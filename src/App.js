@@ -1,10 +1,16 @@
 import React from 'react';
 import './App.css';
+import NavBar from './components/layout/NavBar'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from './components/layout/Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <h1>Youu's Pokedex ?</h1>
+      <NavBar />
+      <div className="container">
+        <Dashboard />
+      </div>
     </div>
   );
 }
