@@ -1,29 +1,26 @@
-import React from 'react';
-import {HashRouter as Router, Route, Switch } from 'react-router-dom'
-import './App.css';
-import NavBar from './components/layout/NavBar'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react'
+import Routes from './config/routes'
 
-import Dashboard from './components/layout/Dashboard';
-import Pokemon from './components/pokemon/Pokemon';
+import { Provider } from 'react-redux'
+import { store, persistor } from './config/store'
+import { ThemeProvider } from 'styled-components'
 
-import backgroundImage from './pattern.jpg'
+import {themeLight} from './config/themes'
+import { PersistGate } from 'redux-persist/integration/react'
 
+
+import './App.css'
 
 function App() {
   return (
-    <Router>
-      <div className="App" style={{background: `url(${backgroundImage})`}}>
-        <NavBar />
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
-          </Switch>
-        </div>
-      </div>
-    </Router>
-  );
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+      <ThemeProvider theme={themeLight}>
+      <Routes/>
+      </ThemeProvider>
+      </PersistGate>
+    </Provider>
+  )
 }
 
-export default App;
+export default App
