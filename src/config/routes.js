@@ -10,6 +10,8 @@ import backgroundImage from "../pattern.jpg";
 import NavBar from "../components/layout/NavBar";
 import Dashboard from "../components/layout/Dashboard";
 import Pokemon from "../components/pokemon/Pokemon";
+import loginScreen from "../screens/loginScreen";
+import registerScreen from "../screens/registerScreen";
 
 const Routes = () => {
   return (
@@ -21,10 +23,10 @@ const Routes = () => {
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
             /* TODO Login relatives screens */
-            <Route path="/register" component={SignUpScreen} />
-            <Route path="/login" component={SignInScreen} />
-            <Route path="/forgot-pw" component={PasswordForgetScreen} />
-            <Route path="/profile" component={AccountScreen} />
+            <Route path="/register" component={registerScreen} />
+            <Route path="/login" component={loginScreen} />
+            {/*<Route path="/forgot-pw" component={PasswordForgetScreen} />
+            <Route path="/profile" component={AccountScreen} />*/}
           </Switch>
         </div>
       </div>
