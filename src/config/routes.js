@@ -10,8 +10,8 @@ import backgroundImage from "../pattern.jpg";
 import NavBar from "../components/layout/NavBar";
 import Dashboard from "../components/layout/Dashboard";
 import Pokemon from "../components/pokemon/Pokemon";
-import loginScreen from "../screens/loginScreen";
-import registerScreen from "../screens/registerScreen";
+import loginScreen from "../screens/LoginScreen";
+import registerScreen from "../screens/RegisterScreen";
 
 const Routes = () => {
   return (

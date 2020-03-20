@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 // import PropTypes from 'prop-types'
 // import axios from 'axios'
 
@@ -6,22 +6,13 @@ import styled from 'styled-components'
 
 import { useHistory } from 'react-router-dom'
 
-const RegisterForm = ({ register }) => {
+const LoginForm = ({ login, form, setForm }) => {
   const history = useHistory();
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    isError: false,
-    isErrorMessage: ''
-  });
-  useEffect(() => {
-
-  });
 
   return (
     <AllContainer>
       <FormContainer>
-        <FormStyled onSubmit={e => register(e, form, history)}>
+        <FormStyled onSubmit={e => login(e, form, history)}>
           <InputContainer>
             <StyledInput
               placeholder='Entrer Email'
@@ -38,7 +29,7 @@ const RegisterForm = ({ register }) => {
                   })
                   : setForm({...form, isError: false})
               }
-            />
+              />
           </InputContainer>
 
           <InputContainer>
@@ -57,7 +48,7 @@ const RegisterForm = ({ register }) => {
                   })
                   : setForm({...form, isError: false})
               }
-            />
+              />
 
             {form.isError ? (
               <MessageError>
@@ -67,31 +58,7 @@ const RegisterForm = ({ register }) => {
           </InputContainer>
 
           <InputContainer>
-            <StyledInput
-              name='password-c'
-              placeholder='Entrer Password again'
-              onChange={e => setForm({...form, passwordC: e.target.value})}
-              type='password'
-              onBlur={() =>
-                form.passwordC !== form.password
-                  ? setForm({
-                    ...form,
-                    isError: true,
-                    isErrorMessage: 'Password différents'
-                  })
-                  : setForm({...form, isError: false})
-              }
-            />
-
-            {form.isError ? (
-              <MessageError>
-                <p>{form.isErrorMessage}</p>
-              </MessageError>
-            ) : null}
-          </InputContainer>
-
-          <InputContainer>
-            <SubmitInput type='submit' value="S'enregistrer"/>
+            <SubmitInput type='submit' value="S'identifier"/>
           </InputContainer>
         </FormStyled>
       </FormContainer>
@@ -105,7 +72,9 @@ const AllContainer = styled.div`
   flex-grow: 1;
 `;
 
-const MessageError = styled.div``;
+const MessageError = styled.div`
+  color: red;
+`;
 
 const StyledInput = styled.input`
   box-sizing: border-box;
@@ -135,6 +104,6 @@ const InputContainer = styled.div`
 
 const FormStyled = styled.form``;
 
-RegisterForm.propTypes = {};
+LoginForm.propTypes = {};
 
-export default RegisterForm
+export default LoginForm
