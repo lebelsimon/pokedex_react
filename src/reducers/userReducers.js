@@ -1,7 +1,7 @@
-import { ADD_USER } from '../actions/registerActions'
+import {ADD_USER, LOGIN} from '../actions/userActions'
 
 const initialState = {
-  users: []
+  user: {}
 };
 
 export default (state = initialState, action) => {
@@ -9,7 +9,12 @@ export default (state = initialState, action) => {
     case ADD_USER:
       return {
         ...state,
-        users:[...state.users, action.data]
+        user: action.data
+      };
+    case LOGIN:
+      return {
+        ...state,
+        user: action.data
       };
     default:
       return state

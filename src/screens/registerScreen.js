@@ -6,9 +6,10 @@ import { bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 const registerScreen = props => {
+  console.log(props);
   const handleSubmit = (e, form, history) => {
     e.preventDefault();
-    props.actions.register.addUser({
+    props.actions.userActions.addUser({
       username: form.username,
       password: form.password
     });
@@ -26,12 +27,12 @@ registerScreen.propTypes = {};
 
 const mapDispatchToProps = () => dispatch =>({
   actions:{
-    register: bindActionCreators(alltheActions.register, dispatch)
+    userActions: bindActionCreators(alltheActions.userActions, dispatch)
   }
 });
 
 const mapStateToProps = state => ({
-  registerState: state.register
+  userState: state.userActions
 });
 
 

@@ -2,6 +2,6 @@ import * as counter from './counter';
 
 import * as crud from './crud';
 
-import * as register from './registerActions';
+import * as userActions from './userActions';
 
-export default { counter, crud, register };
+export default { counter, crud, userActions };

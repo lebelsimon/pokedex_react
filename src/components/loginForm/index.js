@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import { useHistory } from 'react-router-dom'
 
-const LoginForm = ({ submit }) => {
+const LoginForm = ({ login }) => {
   const history = useHistory();
   const [form, setForm] = useState({
     username: '',
@@ -20,7 +20,7 @@ const LoginForm = ({ submit }) => {
   return (
     <AllContainer>
       <FormContainer>
-        <FormStyled onSubmit={e => submit(e, form, history)}>
+        <FormStyled onSubmit={e => login(e, form, history)}>
           <InputContainer>
             <StyledInput
               placeholder='Entrer Email'
