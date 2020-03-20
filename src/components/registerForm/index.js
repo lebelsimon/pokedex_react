@@ -100,7 +100,6 @@ const RegisterForm = ({ register }) => {
 };
 
 const AllContainer = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

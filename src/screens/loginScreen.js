@@ -4,13 +4,14 @@ import LoginForm from '../components/loginForm/index';
 import alltheActions from '../actions'
 import { bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import {Link} from "react-router-dom";
 
 const loginScreen = props => {
   console.log(props);
   const handleSubmit = (e, form, history) => {
     e.preventDefault();
-    props.actions.userActions.login({
-      username: form.username,
+    props.actions.userActions.loginFirebase({
+      email: form.email,
       password: form.password
     });
   };
@@ -19,6 +20,7 @@ const loginScreen = props => {
     <div>
       <h1>SignIn</h1>
       <LoginForm login={handleSubmit}/>
+      <Link to={'/register'}>Don't have an account?</Link>
     </div>
   )
 };

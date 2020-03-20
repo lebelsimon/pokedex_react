@@ -30,6 +30,18 @@ export const registerFirebase = ( data ) => dispatch => {
   });
 };
 
-const loginFirebase = () => {
-
+export const loginFirebase = ( data ) => dispatch => {
+  axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + firebaseConfig.apiKey, {
+    email: data.email,
+    password: data.password
+  })
+    .then(res => {
+      console.log('res firebase : ', res);
+      dispatch(addUser({
+        email: res.data.email,
+        refreshToken: res.data.refreshToken
+      }));
+    }).catch(e => {
+    console.log("ERROR : ", e);
+  });
 };
