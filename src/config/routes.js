@@ -23,7 +23,6 @@ const Routes = () => {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
-            /* TODO Login relatives screens */
             <Route path="/register" component={RegisterScreen} />
             <Route path="/login" component={LoginScreen} />
             <Route path="/profile" component={ProfileScreen} />

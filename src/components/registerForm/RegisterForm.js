@@ -15,6 +15,15 @@ const RegisterForm = ({ register, form, setForm }) => {
         <FormStyled onSubmit={e => register(e, form, history)}>
           <InputContainer>
             <StyledInput
+              placeholder='username'
+              name='username'
+              onChange={e => setForm({...form, username: e.target.value})}
+              type='text'
+              required={true}
+            />
+          </InputContainer>
+          <InputContainer>
+            <StyledInput
               placeholder='Entrer Email'
               name='email'
               onChange={e => setForm({...form, email: e.target.value})}

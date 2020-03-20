@@ -1,16 +1,10 @@
 import axios from 'axios';
 import firebaseConfig from "../config/firebase";
 
-export const ADD_USER = 'ADD_USER';
-export const LOGIN = 'LOGIN';
+export const SET_USER = 'SET_USER';
 
-export const addUser = data => ({
-  type: ADD_USER,
-  data: data
-});
-
-export const login = data => ({
-  type: LOGIN,
+export const setUser = data => ({
+  type: SET_USER,
   data: data
 });
 
@@ -21,12 +15,18 @@ export const registerFirebase = ( data ) => dispatch => {
       password: data.password
     })
       .then(res => {
-        console.log('res firebase : ', res);
-        dispatch(addUser({
-          email: res.data.email,
-          refreshToken: res.data.refreshToken
-        }));
-        resolve();
+        axios.put(firebaseConfig.databaseURL + '/users/' + res.data.localId + '.json', {
+          email: data.email,
+          username: data.username
+        }).then((res) => {
+          dispatch(setUser({
+            email: res.data.email,
+            username: res.data.username
+          }));
+          resolve();
+        }).catch((e) => {
+          reject(e);
+        });
       }).catch(e => {
         reject(e);
       });
@@ -40,12 +40,17 @@ export const loginFirebase = ( data ) => dispatch => {
       password: data.password
     })
       .then(res => {
-        console.log('res firebase : ', res);
-        dispatch(addUser({
-          email: res.data.email,
-          refreshToken: res.data.refreshToken
-        }));
-        resolve();
+        console.log(res);
+        axios.get(firebaseConfig.databaseURL + '/users/' + res.data.localId + '.json')
+          .then(res => {
+            dispatch(setUser({
+              email: res.data.email,
+              username: res.data.username
+            }));
+            resolve();
+          }).catch(e => {
+            reject(e);
+        });
       }).catch(e => {
         reject(e);
       });
