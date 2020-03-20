@@ -1,11 +1,17 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {bindActionCreators} from "redux";
 import alltheActions from "../actions";
 import {connect} from "react-redux";
+import {useHistory} from "react-router-dom";
 // import ReactPaginate from 'react-paginate'
 
 const ProfileScreen = props => {
-  console.log(props.userState.user);
+  const history = useHistory();
+  useEffect(() => {
+    if (Object.keys(props.userState.user).length === 0 && props.userState.user.constructor === Object) {
+      history.push('/login');
+    }
+  }, []);
   return (
     <div>
       <h1>ProfileScreen</h1>

@@ -13,6 +13,7 @@ import Pokemon from "../components/pokemon/Pokemon";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import DisconnectScreen from "../screens/DisconnectScreen";
 
 const Routes = () => {
   return (
@@ -26,6 +27,7 @@ const Routes = () => {
             <Route path="/register" component={RegisterScreen} />
             <Route path="/login" component={LoginScreen} />
             <Route path="/profile" component={ProfileScreen} />
+            <Route path="/disconnect" component={DisconnectScreen} />
           </Switch>
         </div>
       </div>

@@ -22,6 +22,12 @@ const NavBar = () => {
         <Link to="/register" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
           Register
         </Link>
+        <Link to="/profile" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
+          Profile
+        </Link>
+        <Link to="/disconnect" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
+          Disconnect
+        </Link>
       </nav>
     </div>
   )

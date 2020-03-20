@@ -2,9 +2,15 @@ import axios from 'axios';
 import firebaseConfig from "../config/firebase";
 
 export const SET_USER = 'SET_USER';
+export const UNSET_USER = 'UNSET_USER';
 
 export const setUser = data => ({
   type: SET_USER,
+  data: data
+});
+
+export const unsetUser = data => ({
+  type: UNSET_USER,
   data: data
 });
 
@@ -40,7 +46,6 @@ export const loginFirebase = ( data ) => dispatch => {
       password: data.password
     })
       .then(res => {
-        console.log(res);
         axios.get(firebaseConfig.databaseURL + '/users/' + res.data.localId + '.json')
           .then(res => {
             dispatch(setUser({
