@@ -21,7 +21,10 @@ export const registerFirebase = ( data ) => dispatch => {
   })
   .then(res => {
     console.log('res firebase : ', res);
-    dispatch(addUser(res.data));
+    dispatch(addUser({
+      email: res.data.email,
+      refreshToken: res.data.refreshToken
+    }));
   }).catch(e => {
     console.log("ERROR : ", e);
   });
