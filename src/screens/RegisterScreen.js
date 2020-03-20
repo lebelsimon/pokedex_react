@@ -18,6 +18,8 @@ const RegisterScreen = (props) => {
     props.actions.userActions.registerFirebase({
       email: form.email,
       password: form.password
+    }).then(() => {
+      history.push('/profile');
     }).catch((e) => {
       setForm({...form, isError: true, isErrorMessage: e.response.data.error.message});
     });

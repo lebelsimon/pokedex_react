@@ -2,7 +2,9 @@ import React from 'react'
 // import ReactPaginate from 'react-paginate'
 
 const ProfileScreen = () => {
-  return <p>ProfileScreen</p>
+  return (
+    <h1>ProfileScreen</h1>
+  );
 };
 
 export default ProfileScreen

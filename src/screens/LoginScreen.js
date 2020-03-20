@@ -19,6 +19,8 @@ const LoginScreen = props => {
     props.actions.userActions.loginFirebase({
       email: form.email,
       password: form.password
+    }).then(() => {
+      history.push('/profile');
     }).catch(e => {
       console.log(e);
       setForm({...form, isError: true, isErrorMessage: e.response.data.error.message});
