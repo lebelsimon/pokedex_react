@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 const RegisterForm = ({ register }) => {
   const history = useHistory();
   const [form, setForm] = useState({
-    username: '',
+    email: '',
     password: '',
     isError: false,
     isErrorMessage: ''
@@ -25,11 +25,12 @@ const RegisterForm = ({ register }) => {
           <InputContainer>
             <StyledInput
               placeholder='Entrer Email'
-              name='username'
-              onChange={e => setForm({...form, username: e.target.value})}
-              type='text'
+              name='email'
+              onChange={e => setForm({...form, email: e.target.value})}
+              type='email'
+              required={true}
               onBlur={() =>
-                form.username.length < 8
+                form.email.length < 8
                   ? setForm({
                     ...form,
                     isError: true,
@@ -46,6 +47,7 @@ const RegisterForm = ({ register }) => {
               placeholder='Entrer Password'
               onChange={e => setForm({...form, password: e.target.value})}
               type='password'
+              required={true}
               onBlur={() =>
                 form.password.length < 8
                   ? setForm({

@@ -6,11 +6,10 @@ import { bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 const registerScreen = props => {
-  console.log(props);
   const handleSubmit = (e, form, history) => {
     e.preventDefault();
-    props.actions.userActions.addUser({
-      username: form.username,
+    props.actions.userActions.registerFirebase({
+      email: form.email,
       password: form.password
     });
   };
@@ -34,6 +33,5 @@ const mapDispatchToProps = () => dispatch =>({
 const mapStateToProps = state => ({
   userState: state.userActions
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(registerScreen);
