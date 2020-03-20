@@ -16,7 +16,7 @@ function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
       <ThemeProvider theme={themeLight}>
-      <Routes></Routes>
+      <Routes/>
       </ThemeProvider>
       </PersistGate>
     </Provider>
