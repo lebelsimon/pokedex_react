@@ -15,7 +15,6 @@ const LoginForm = ({ submit }) => {
     isErrorMessage: ''
   });
   useEffect(() => {
-    console.log(form.username.length)
   });
 
   return (

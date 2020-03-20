@@ -15,7 +15,7 @@ const RegisterForm = ({ register }) => {
     isErrorMessage: ''
   });
   useEffect(() => {
-    console.log(form.username.length)
+
   });
 
   return (
