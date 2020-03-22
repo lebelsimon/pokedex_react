@@ -16,8 +16,8 @@ import ListPokemon from '../screens/PokemonListScreen'
 const Routes = () => {
   return (
     <Router>
-      <div className='App' style={{ background: `url(${backgroundImage})` }}>
-        <NavBar />
+      {/* <div className='App' style={{ background: `url(${backgroundImage})` }}> */}
+        {/* <NavBar /> */}
         <div className='container'>
           <Switch>
             <Route exact path='/' component={Dashboard} />
@@ -27,7 +27,7 @@ const Routes = () => {
             <Redirect to='/' />
           </Switch>
         </div>
-      </div>
+      {/* </div> */}
     </Router>
   );
 };

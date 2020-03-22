@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 
 import PokemonDetail from '../components/pokemon/PokemonDetail';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import alltheActions from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const PokemonListScreen = props => {
-  console.log(props);
   useEffect(() => {
     props.actions.pokemon.pokemonCall();
   }, []);
@@ -21,11 +20,11 @@ const PokemonListScreen = props => {
 };
 
 const PokemonList = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 const mapDispatchToProps = () => dispatch => ({
