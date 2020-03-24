@@ -15,7 +15,7 @@ export const dispatchOnePokemon = payload => ({
 
 export const pokemonCall = () => dispatch => {
   axios
-    .get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20')
+    .get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=251')
     .then(res => {
       console.log(res.data);
       dispatch(dispatchPokemons(res.data.results));

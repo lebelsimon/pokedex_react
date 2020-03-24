@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 
 const CaptureScreen = props => {
+  console.log(props)
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,7 +54,6 @@ const PokemonList = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* background-color: red; */
   background-image: url(${background});
   height: 100vh;
   background-position: center;
