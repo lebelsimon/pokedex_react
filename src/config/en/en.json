@@ -1,6 +1,12 @@
 {
   "translation":{
   "menu": "Menu en anglais",
-  "captured": "Congratulations, you caught a "
+  "captured": "Congratulations, you caught a ",
+  "failH1": "What a pity...",
+  "failH2": "Maybe next time !",
+  "meetPokemon": "You met a pokemon",
+  "pokemonName": "Name : ",
+  "pokemonHeight": "Height : ",
+  "pokemonWeight": "Weight : "
 }
 }

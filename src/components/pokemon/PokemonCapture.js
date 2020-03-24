@@ -54,8 +54,8 @@ const PokemonCapture = ({ props }) => {
           </>
         ) : (
           <>
-            <H1Capture>Quel Dommage...</H1Capture>
-            <H2Capture>La prochaine fois peut etre</H2Capture>
+            <H1Capture>{props.t('failH1')}</H1Capture>
+            <H2Capture>{props.t('failH2')}</H2Capture>
             <DivTest>
             <img src={failCapture}></img>
             </DivTest>
@@ -64,7 +64,7 @@ const PokemonCapture = ({ props }) => {
         )
       ) : (
         <>
-          <H1Capture>Vous avez rencontré un pokémon</H1Capture>
+          <H1Capture>{props.t('meetPokemon')}</H1Capture>
           <DivTest>
             <ImagePokemon
               src={imageUrl}
@@ -73,15 +73,15 @@ const PokemonCapture = ({ props }) => {
             ></ImagePokemon>
           </DivTest>
           <DivCaracteristics>
-            <Name><b>Nom : </b> {props.pokemonState.onepokemon.name}</Name>
+            <Name><b>{props.t('pokemonName')}</b> {props.pokemonState.onepokemon.name}</Name>
             <Type>
               <b>Type(s) : </b>
               {props.pokemonState.onepokemon.types.map(
                 type => (console.log(type.type.name), (<ParagrapheType>{type.type.name}</ParagrapheType>))
               )}
             </Type>
-            <Height><b>Hauteur : </b> {props.pokemonState.onepokemon.height}</Height>
-            <Weight><b>Poids : </b> {props.pokemonState.onepokemon.weight}</Weight>
+            <Height><b>{props.t('pokemonHeight')}</b> {props.pokemonState.onepokemon.height}</Height>
+            <Weight><b>{props.t('pokemonWeight')}</b> {props.pokemonState.onepokemon.weight}</Weight>
           </DivCaracteristics>
           <DivGoCapture onClick={handleCapturing}>
           <ImagePokeball 
