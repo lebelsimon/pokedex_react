@@ -47,7 +47,7 @@ const CaptureScreen = props => {
         <>
         {console.log(props.pokemonState.onepokemon)}
           <PokemonCapture
-            props={props}
+            pokemon = { props.pokemonState.onepokemon}
           ></PokemonCapture>
         </>
       )}

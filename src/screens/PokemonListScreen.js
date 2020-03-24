@@ -25,6 +25,12 @@ const PokemonList = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  
+  height: 100vh;
+  background-image: url(${props => props.theme.backgroundimage});
+  background-position: ${props => props.theme.backgroundposition};
+  background-repeat: ${props => props.theme.backgroundrepeat};
+  background-size: ${props => props.theme.backgroundsize};
 `;
 
 const mapDispatchToProps = () => dispatch => ({
@@ -33,7 +39,9 @@ const mapDispatchToProps = () => dispatch => ({
   }
 });
 const mapStateToProps = state => ({
-  pokemonState: state.pokemon
+  pokemonState: state.pokemon,
+  
+  themeState: state.theme
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonListScreen);
