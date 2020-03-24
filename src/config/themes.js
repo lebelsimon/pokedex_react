@@ -1,11 +1,11 @@
 const themeLight = {
-    primary: 'white',
-    second: 'red'
-}
+  primary: 'white',
+  secondary: 'green'
+};
 
 const themeDark = {
-    primary: 'black',
-    second: 'blue'
-}
+  primary: 'black',
+  secondary: 'red'
+};
 
-export {themeDark, themeLight}
+export { themeDark, themeLight };

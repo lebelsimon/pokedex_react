@@ -6,12 +6,12 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
-import backgroundImage from '../pattern.jpg';
-import NavBar from '../components/layout/NavBar';
+
 import Dashboard from '../components/layout/Dashboard';
 import Pokemon from '../components/pokemon/Pokemon';
 import Capture from '../screens/captureScreen';
 import ListPokemon from '../screens/PokemonListScreen'
+import Settings from '../screens/settings'
 
 const Routes = () => {
   return (
@@ -24,6 +24,7 @@ const Routes = () => {
             <Route exact path='/pokemon/:pokemonIndex' component={Pokemon} />
             <Route path='/capture' component={Capture} />
             <Route path='/listPokemon' component={ListPokemon} />
+            <Route path='/settings' component={Settings}/>
             <Redirect to='/' />
           </Switch>
         </div>

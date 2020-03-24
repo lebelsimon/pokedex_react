@@ -4,4 +4,6 @@ import * as crud from './crud'
 
 import * as pokemon from './pokemonActions'
 
-export default { counter, crud, pokemon }
+import * as theme from './theme'
+
+export default { counter, crud, pokemon, theme }
