@@ -12,6 +12,7 @@ import Pokemon from '../components/pokemon/Pokemon';
 import Capture from '../screens/captureScreen';
 import ListPokemon from '../screens/PokemonListScreen'
 import Settings from '../screens/settings'
+import Loading from '../screens/loading'
 
 const Routes = () => {
   return (
@@ -21,6 +22,8 @@ const Routes = () => {
         <div className='container'>
           <Switch>
             <Route exact path='/' component={Dashboard} />
+            
+            <Route path='/loading' component={Loading}/>
             <Route exact path='/pokemon/:pokemonIndex' component={Pokemon} />
             <Route path='/capture' component={Capture} />
             <Route path='/listPokemon' component={ListPokemon} />

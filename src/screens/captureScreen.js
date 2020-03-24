@@ -5,16 +5,23 @@ import spinner from '../components/pokemon/simple_pokeball.gif';
 import background from '../captureBackground.png';
 import styled from 'styled-components';
 import alltheActions from '../actions';
+
+import { compose } from 'redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import i18next from 'i18next'
+
+import { withTranslation } from 'react-i18next'
 
 
 const CaptureScreen = props => {
-  console.log(props)
+  console.log(props.languageState.language)
   const [loading, setLoading] = useState(true);
+  // 
 
   useEffect(() => {
+    i18next.changeLanguage(props.languageState.language);
     const idPokemon = Math.round(Math.random() * 151);
     props.actions.pokemon.getPokemonById(idPokemon);
     const handler = setTimeout(() => {
@@ -40,7 +47,7 @@ const CaptureScreen = props => {
         <>
         {console.log(props.pokemonState.onepokemon)}
           <PokemonCapture
-            pokemon={props.pokemonState.onepokemon}
+            props={props}
           ></PokemonCapture>
         </>
       )}
@@ -67,7 +74,8 @@ const mapDispatchToProps = () => dispatch => ({
   }
 });
 const mapStateToProps = state => ({
-  pokemonState: state.pokemon
+  pokemonState: state.pokemon,
+  languageState: state.language
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CaptureScreen);
+export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProps))(CaptureScreen);

@@ -1,17 +1,28 @@
 import React from 'react'
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
+import i18next from 'i18next'
+
+import { withTranslation } from 'react-i18next'
 import allTheActions from '../actions'
 
-// import i18next from 'i18next'
 import styled from 'styled-components'
 
 import { themeLight, themeDark } from '../config/themes'
 
 const Settings = props => {
-  console.log('props', props.themeState)
+
+  console.log(props)
+  const changeLanguage = langue => {
+    console.log(langue);
+    i18next.changeLanguage(langue);
+    props.actions.language.saveLanguage(langue);
+
+  }
+
   return (
     <Container>
       <button onClick={() => props.actions.theme.changeTheme(themeLight)}>
@@ -20,6 +31,10 @@ const Settings = props => {
       <button onClick={() => props.actions.theme.changeTheme(themeDark)}>
         Theme Dark
       </button>
+
+      <p>{props.t('menu')}</p>
+      <button onClick={() => changeLanguage('fr')}>fr</button>
+      <button onClick={() => changeLanguage('en')}>en</button>
     </Container>
   )
 }
@@ -33,8 +48,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = () => dispatch => ({
   actions: {
-    theme: bindActionCreators(allTheActions.theme, dispatch)
+    theme: bindActionCreators(allTheActions.theme, dispatch),
+    language: bindActionCreators(allTheActions.language, dispatch)
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProps))(Settings)

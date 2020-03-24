@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import failCapture from './fail_capture.gif';
-import goCapture from './go_capture.gif';
-import pokemoNcaptured from './pokemon_captured.gif'
+import failCapture from '../../images/fail_capture.gif';
+import goCapture from '../../images/go_capture.gif';
+import pokemoNcaptured from '../..//images/pokemon_captured.gif'
 import { useHistory } from 'react-router-dom'
 import { motion } from 'framer-motion';
 
-const PokemonCapture = ({ pokemon }) => {
+const PokemonCapture = ({ props }) => {
   
+  console.log(props);
   const history = useHistory()
   const [rotate, setrotate] = useState(true);
   const [capturing, setcapturing] = useState(false);
   const [success, setsuccess] = useState(false);
 
   const finishCapture = async event => {
-    console.log("Finish");
     history.push('/listPokemon')
   }
 
   const handleCapturing = () => {
-    console.log("test click");
     setcapturing(true);
     const tryCapture = Math.round(Math.random() * 100);
-    console.log(tryCapture);
     if (tryCapture > 40) {
       setsuccess(true);
     }
@@ -36,8 +34,7 @@ const PokemonCapture = ({ pokemon }) => {
     return _ => clearTimeout(timeout);
   }, [rotate, capturing]);
 
-  console.log(pokemon);
-  const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemon.id}.png?raw=true`;
+  const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${props.pokemonState.onepokemon.id}.png?raw=true`;
   const pokeball = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png`;
 
   return (
@@ -45,7 +42,7 @@ const PokemonCapture = ({ pokemon }) => {
       {capturing ? (
         success ? (
           <>
-            <H1Capture>Félicitations !!! Vous avez capturé un {pokemon.name}</H1Capture>
+            <H1Capture>{props.t('captured')}{props.pokemonState.onepokemon.name}</H1Capture>
             <DivTest>
               <ImagePokeball
                 src={pokemoNcaptured}
@@ -76,15 +73,15 @@ const PokemonCapture = ({ pokemon }) => {
             ></ImagePokemon>
           </DivTest>
           <DivCaracteristics>
-            <Name><b>Nom : </b> {pokemon.name}</Name>
+            <Name><b>Nom : </b> {props.pokemonState.onepokemon.name}</Name>
             <Type>
               <b>Type(s) : </b>
-              {pokemon.types.map(
+              {props.pokemonState.onepokemon.types.map(
                 type => (console.log(type.type.name), (<ParagrapheType>{type.type.name}</ParagrapheType>))
               )}
             </Type>
-            <Height><b>Hauteur : </b> {pokemon.height}</Height>
-            <Weight><b>Poids : </b> {pokemon.weight}</Weight>
+            <Height><b>Hauteur : </b> {props.pokemonState.onepokemon.height}</Height>
+            <Weight><b>Poids : </b> {props.pokemonState.onepokemon.weight}</Weight>
           </DivCaracteristics>
           <DivGoCapture onClick={handleCapturing}>
           <ImagePokeball 

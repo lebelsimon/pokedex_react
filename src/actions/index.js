@@ -6,4 +6,6 @@ import * as pokemon from './pokemonActions'
 
 import * as theme from './theme'
 
-export default { counter, crud, pokemon, theme }
+import * as language from './language'
+
+export default { counter, crud, pokemon, theme, language }
