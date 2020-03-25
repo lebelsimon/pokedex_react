@@ -1,16 +1,19 @@
 import React from 'react';
 
 import styled from 'styled-components'
-import loading from '../images/pokeball_loading.gif'
+import loading from '../../images/pokeball_loading.gif'
 
-const Loading = () => {
+const Loading = props => {
     return (
         <Container>
-            <img src={loading}></img>
+            <ImageLoading src={loading}></ImageLoading>
         </Container>
     );
 };
 
+const ImageLoading = styled.img`
+height: 100vh;
+`
 
 const Container = styled.div`
 height: 100vh;

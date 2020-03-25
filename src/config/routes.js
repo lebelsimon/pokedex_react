@@ -12,7 +12,7 @@ import Pokemon from '../components/pokemon/Pokemon';
 import Capture from '../screens/captureScreen';
 import ListPokemon from '../screens/PokemonListScreen'
 import Settings from '../screens/settings'
-import Loading from '../screens/loading'
+import Loading from '../components/loading/loading'
 
 const Routes = () => {
   return (

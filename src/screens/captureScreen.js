@@ -10,15 +10,16 @@ import { compose } from 'redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import i18next from 'i18next'
+import i18next from 'i18next';
 
-import { withTranslation } from 'react-i18next'
+import { withTranslation } from 'react-i18next';
 
+import Loading from '../components/loading/loading';
 
 const CaptureScreen = props => {
-  console.log(props.languageState.language)
+  console.log(props.languageState.language);
   const [loading, setLoading] = useState(true);
-  // 
+  //
 
   useEffect(() => {
     i18next.changeLanguage(props.languageState.language);
@@ -40,18 +41,18 @@ const CaptureScreen = props => {
     }
   };
   return (
-    <PokemonList>
+    <>
       {loading ? (
-        <img src={spinner} style={{ width: '5em', height: '5em' }}></img>
+        <Loading />
       ) : (
-        <>
-        {console.log(props.pokemonState.onepokemon)}
+        <PokemonList>
+          {console.log(props.pokemonState.onepokemon)}
           <PokemonCapture
-            pokemon = { props.pokemonState.onepokemon}
+            pokemon={props.pokemonState.onepokemon}
           ></PokemonCapture>
-        </>
+        </PokemonList>
       )}
-    </PokemonList>
+    </>
   );
 };
 
@@ -78,4 +79,7 @@ const mapStateToProps = state => ({
   languageState: state.language
 });
 
-export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProps))(CaptureScreen);
+export default compose(
+  withTranslation(),
+  connect(mapStateToProps, mapDispatchToProps)
+)(CaptureScreen);

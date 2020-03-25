@@ -3,26 +3,23 @@ import styled from 'styled-components';
 
 import failCapture from '../../images/fail_capture.gif';
 import goCapture from '../../images/go_capture.gif';
-import pokemoNcaptured from '../..//images/pokemon_captured.gif'
-import { useHistory } from 'react-router-dom'
+import pokemoNcaptured from '../..//images/pokemon_captured.gif';
+import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
 
 import { useTranslation } from 'react-i18next';
 
-
 const PokemonCapture = ({ pokemon }) => {
-
   const { t, i18n } = useTranslation();
   console.log(pokemon);
-  const history = useHistory()
+  const history = useHistory();
   const [rotate, setrotate] = useState(true);
   const [capturing, setcapturing] = useState(false);
   const [success, setsuccess] = useState(false);
 
   const finishCapture = async event => {
-    history.push('/listPokemon')
-  }
+    history.push('/listPokemon');
+  };
 
   const handleCapturing = () => {
     setcapturing(true);
@@ -47,7 +44,10 @@ const PokemonCapture = ({ pokemon }) => {
       {capturing ? (
         success ? (
           <>
-            <H1Capture>{t('captured')}{pokemon.name}</H1Capture>
+            <H1Capture>
+              {t('capture.captured')}
+              {pokemon.name}
+            </H1Capture>
             <DivTest>
               <ImagePokeball
                 src={pokemoNcaptured}
@@ -59,17 +59,17 @@ const PokemonCapture = ({ pokemon }) => {
           </>
         ) : (
           <>
-            <H1Capture>{t('failH1')}</H1Capture>
-            <H2Capture>{t('failH2')}</H2Capture>
+            <H1Capture>{t('capture.failH1')}</H1Capture>
+            <H2Capture>{t('capture.failH2')}</H2Capture>
             <DivTest>
-            <img src={failCapture}></img>
+              <img src={failCapture}></img>
             </DivTest>
             <ButtonValidation onClick={finishCapture}>Pokedex</ButtonValidation>
           </>
         )
       ) : (
         <>
-          <H1Capture>{t('meetPokemon')}</H1Capture>
+          <H1Capture>{t('capture.meetPokemon')}</H1Capture>
           <DivTest>
             <ImagePokemon
               src={imageUrl}
@@ -78,25 +78,33 @@ const PokemonCapture = ({ pokemon }) => {
             ></ImagePokemon>
           </DivTest>
           <DivCaracteristics>
-            <Name><b>{t('pokemonName')}</b> {pokemon.name}</Name>
+            <Name>
+              <b>{t('capture.pokemonName')}</b> {pokemon.name}
+            </Name>
             <Type>
               <b>Type(s) : </b>
               {pokemon.types.map(
-                type => (console.log(type.type.name), (<ParagrapheType>{type.type.name}</ParagrapheType>))
+                type => (
+                  console.log(type.type.name),
+                  (<ParagrapheType>{type.type.name}</ParagrapheType>)
+                )
               )}
             </Type>
-            <Height><b>{t('pokemonHeight')}</b> {pokemon.height}</Height>
-            <Weight><b>{t('pokemonWeight')}</b> {pokemon.weight}</Weight>
+            <Height>
+              <b>{t('capture.pokemonHeight')}</b> {pokemon.height}
+            </Height>
+            <Weight>
+              <b>{t('capture.pokemonWeight')}</b> {pokemon.weight}
+            </Weight>
           </DivCaracteristics>
           <DivGoCapture onClick={handleCapturing}>
-          <ImagePokeball 
-          src={goCapture} 
-          
-          animate={{ rotate: rotate ? -360 : 360 }}
-          transition={{ duration: rotate ? 20 : 20 }}
-          style={{ width: '5em', height: '5em' }} ></ImagePokeball>
+            <ImagePokeball
+              src={goCapture}
+              animate={{ rotate: rotate ? -360 : 360 }}
+              transition={{ duration: rotate ? 20 : 20 }}
+              style={{ width: '5em', height: '5em' }}
+            ></ImagePokeball>
           </DivGoCapture>
-          
         </>
       )}
     </DivDetail>
@@ -104,27 +112,28 @@ const PokemonCapture = ({ pokemon }) => {
 };
 
 const H1Capture = styled.h1`
-text-align: center;
-`
+  text-align: center;
+`;
 const H2Capture = styled.h2`
-text-align: center;
-`
+  text-align: center;
+`;
 
 const ButtonValidation = styled.button`
-/* text:  */
-border:none;
-	padding:10px 5px 10px 5px;
-	border-radius:75%;
-	border-bottom:3px solid white;
-	font:bold 13px Arial;
-	color: white;
-	background: red;`
+  /* text:  */
+  border: none;
+  padding: 10px 5px 10px 5px;
+  border-radius: 75%;
+  border-bottom: 3px solid white;
+  font: bold 13px Arial;
+  color: white;
+  background: red;
+`;
 
-const DivGoCapture = styled.div``
+const DivGoCapture = styled.div``;
 
 const ParagrapheType = styled.p`
-margin-left: 5px;
-`
+  margin-left: 5px;
+`;
 
 const Name = styled.div`
   width: 50%;
@@ -133,7 +142,7 @@ const Name = styled.div`
 `;
 
 const Type = styled.div`
-width: 50%;
+  width: 50%;
   display: flex;
   align-items: center;
   /* width: 50%;
@@ -176,14 +185,14 @@ const DivTest = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; 
+  flex-direction: column;
 `;
 
 const DivDetail = styled.div`
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; 
+  flex-direction: column;
 `;
 
 export default PokemonCapture;
