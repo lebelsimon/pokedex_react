@@ -36,8 +36,8 @@ const LoginScreen = props => {
 
   return (
     <Container>
-      <h1>SignIn</h1>
-      <LoginForm login={handleSubmit} form={form} setForm={setForm} />
+      <H1>SignIn</H1>
+      <LoginForm login={handleSubmit} form={form} setForm={setForm}/>
       <Link to={'/register'}>Don't have an account?</Link>
     </Container>
   );
@@ -45,6 +45,14 @@ const LoginScreen = props => {
 
 LoginScreen.propTypes = {};
 
+const H1 = styled.h1`
+@media (max-width: 768px) {
+    font-size: 4em;
+    }
+  
+    @media (max-width: 425px) {
+    }
+`
 const Container = styled.div`
   width: 100%;
   display: flex;

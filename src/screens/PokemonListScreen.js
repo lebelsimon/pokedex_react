@@ -4,25 +4,33 @@ import PokemonCard from '../components/pokemon/PokemonCard';
 
 import './style.css';
 import ReactPaginate from 'react-paginate';
+import {useHistory} from "react-router-dom";
 import styled from 'styled-components';
 import alltheActions from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const PokemonListScreen = props => {
-  console.log(props);
+  
+  const history = useHistory();
+  console.log(props)
   const [page, setPage] = useState(0);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(20);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (Object.keys(props.userState.user).length === 0 && props.userState.user.constructor === Object) {
+      history.push('/login');
+    }
+    else{
     const handler = setTimeout(() => {
       get();
     }, 500);
     return () => {
       clearTimeout(handler);
     };
+  }
   }, [offset]);
 
   const get = async () => {
@@ -95,7 +103,7 @@ const mapDispatchToProps = () => dispatch => ({
 });
 const mapStateToProps = state => ({
   pokemonState: state.pokemon,
-
+  userState: state.userActions,
   themeState: state.theme
 });
 

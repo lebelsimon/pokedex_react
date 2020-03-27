@@ -45,6 +45,20 @@ const NavBar = () => {
 };
 
 const Container = styled.div`
-position: absolute;`;
+position: absolute;
+display: flex;
+justify-content:space-between;
+ @media (max-width: 768px) {
+    
+  padding: 0 30px;
+  height: 90px;
+  }
+
+  @media (max-width: 425px) {
+    
+  padding: 0 10px;
+  height: 45px;
+  }
+`;
 
 export default NavBar;
