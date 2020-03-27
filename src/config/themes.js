@@ -1,9 +1,8 @@
-import background from '../images/pokeball_gold.jpg'
+import background from '../images/pokeball_gold.jpg';
 
-import destroyedPokeball from '../images/pokeball_destroyed.jpg'
+import destroyedPokeball from '../images/pokeball_destroyed.jpg';
 
-import pokeballEvoli from '../images/pokeball_evoli.jpg'
-
+import pokeballEvoli from '../images/pokeball_evoli.jpg';
 
 import pattern from '../pattern.jpg';
 
