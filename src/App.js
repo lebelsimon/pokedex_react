@@ -16,12 +16,7 @@ function App() {
     store.getState().theme.currentTheme
   );
   useEffect(() => {
-    console.log(currentTheme);
     store.subscribe(() => {
-      console.log(
-        'App -> store.getState().theme.currentTheme',
-        store.getState()
-      );
       setCurrentTheme(store.getState().theme.currentTheme);
     });
   });

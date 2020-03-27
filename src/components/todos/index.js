@@ -14,7 +14,6 @@ const Todos = props => {
   };
 
   const handleSubmit = async event => {
-    console.log(body);
     event.preventDefault();
     props.actions.crud.addTodo({
       id: props.crudState.counter,
@@ -24,7 +23,6 @@ const Todos = props => {
     setBody('');
   };
 
-  console.log(props);
   return (
     <Container>
       <form className='post-form'>
@@ -43,18 +41,15 @@ const Todos = props => {
 
       <DivTodos>
         {props.crudState.todos.length > 0 ? (
-          <div className='todos'>
-            {props.crudState.todos.map(
-              todo => (
-                console.log('Hello', todo),
-                (<Todo key={todo.id} todo={todo}></Todo>)
-              )
-            )}
-          </div>
-        ) : (
-          <></>
-        )}
-      </DivTodos>
+            <div className='todos'>
+              {props.crudState.todos.map(todo => (
+                  <Todo key={todo.id} todo={todo}/>
+              ))}
+            </div>
+          ) : (
+            <></>
+          )}
+        </DivTodos>
     </Container>
   );
 };

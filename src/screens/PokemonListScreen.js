@@ -11,9 +11,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const PokemonListScreen = props => {
-  
   const history = useHistory();
-  console.log(props)
   const [page, setPage] = useState(0);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(20);
@@ -35,10 +33,8 @@ const PokemonListScreen = props => {
 
   const get = async () => {
     try {
-      console.log(props);
       props.actions.pokemon.pokemonCall(offset);
       setPage(251 / 20);
-      console.log(page);
     } catch (err) {
       console.log(err);
     } finally {
@@ -47,11 +43,6 @@ const PokemonListScreen = props => {
   };
 
   const handlePageClick = data => {
-    console.log('data', data);
-
-    console.log('page', Math.round(page));
-    if (data.selected > page) {
-    }
     const selected = data.selected;
     const o = Math.ceil(selected * 20);
     setOffset(o);
@@ -59,9 +50,12 @@ const PokemonListScreen = props => {
 
   return (
     <PokemonList>
-      {props.pokemonState.pokemons.map(pokemon => (
-        <PokemonCard key={pokemon.name} pokemon={pokemon}></PokemonCard>
-      ))}
+      {props.pokemonState.pokemons.map(pokemon => {
+        const pokemonIndex = pokemon.url.split('/')[6];
+        return(
+          <PokemonCard key={pokemon.name} pokemon={pokemon} caught={props.userState.user.pokemonsCaught.includes(pokemon.name)} imgUrl={props.userState.user.pokemonsCaught.includes(pokemon.name) || props.userState.user.pokemonsSeen.includes(pokemon.name) ? `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true` : 'https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/0.png?raw=true'}/>
+        )
+      })}
 
       <ReactPaginate
         previousLabel={'<'}

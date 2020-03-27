@@ -15,7 +15,6 @@ import Loading from '../components/loading/loading';
 import PokemonDetail from '../components/pokemon/PokemonDetail'
 
 const PokemonDetailScreen = props => {
-  console.log(props);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     i18next.changeLanguage(props.languageState.language);
@@ -42,8 +41,7 @@ const PokemonDetailScreen = props => {
         <Loading />
       ) : (
         <DivDetail>
-          <PokemonDetail pokemon={props.pokemonState.onepokemon}></PokemonDetail>
-          
+          <PokemonDetail pokemon={props.pokemonState.onepokemon}/>
         </DivDetail>
       )}
     </>

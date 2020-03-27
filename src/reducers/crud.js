@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const deleteTodo = (todos, id) => {
-  console.log('test delete');
   return todos.filter(todo => todo.id !== id);
 };
 

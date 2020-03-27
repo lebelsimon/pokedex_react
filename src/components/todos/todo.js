@@ -6,11 +6,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const Todo = props => {
-  console.log(props);
-  const todo = props.todo;
-  console.log(todo);
-  return (
-    <AllContainer>
+    const todo = props.todo;
+    return (
+        <AllContainer>
       <DivPublication>
         <DivID>
           <h1>Todo : {todo.content}</h1>
