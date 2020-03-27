@@ -4,11 +4,11 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
+  Redirect,
 } from 'react-router-dom';
 
 import backgroundImage from "../pattern.jpg";
 import NavBar from "../components/layout/NavBar";
-import Dashboard from "../components/layout/Dashboard";
 import Pokemon from "../components/pokemon/Pokemon";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
@@ -19,6 +19,7 @@ import Capture from '../screens/captureScreen';
 import ListPokemon from '../screens/PokemonListScreen'
 import Settings from '../screens/settings'
 import Loading from '../components/loading/loading'
+import NotFoundScreen from "../screens/NotFoundScreen";
 
 const Routes = () => {
   return (
@@ -27,7 +28,6 @@ const Routes = () => {
         <NavBar />
         <div className="container">
           <Switch>
-            <Route exact path="/" component={Dashboard} />
             <Route path='/loading' component={Loading}/>
             <Route exact path='/pokemon/:pokemonIndex' component={PokemonDetail} />
             <Route path='/capture' component={Capture} />
@@ -38,6 +38,8 @@ const Routes = () => {
             <Route path="/login" component={LoginScreen} />
             <Route path="/profile" component={ProfileScreen} />
             <Route path="/disconnect" component={DisconnectScreen} />
+            <Route path="/notFound" component={NotFoundScreen}/>
+            <Redirect to='/notFound'/>
           </Switch>
         </div>
       </div>
