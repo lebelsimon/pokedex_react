@@ -11,14 +11,13 @@ import styled from 'styled-components';
 
 import Loading from '../components/loading/loading';
 
-import { themeLight, themeDark } from '../config/themes';
+import { themeLight, themeDark, themeEvoli } from '../config/themes';
 
 import { useTranslation } from 'react-i18next';
 
 const Settings = props => {
   console.log(props);
   const { t, i18n } = useTranslation();
-  console.log(t)
 
   const [loading, setLoading] = useState(true);
   const changeLanguage = langue => {
@@ -41,22 +40,89 @@ const Settings = props => {
         <Loading />
       ) : (
         <Container>
-          <button onClick={() => props.actions.theme.changeTheme(themeLight)}>
-            Theme Light
-          </button>
-          <button onClick={() => props.actions.theme.changeTheme(themeDark)}>
-            Theme Dark
-          </button>
+          <DivChoice>
+            <H1>{t('settings.background')}</H1>
+            <DivSelect>
+              <ButtonValidation
+                onClick={() => props.actions.theme.changeTheme(themeLight)}
+              >
+                {t('settings.lightTheme')}
+              </ButtonValidation>
+              <ButtonValidation
+                onClick={() => props.actions.theme.changeTheme(themeDark)}
+              >
+                {t('settings.darkTheme')}
+              </ButtonValidation>
+              <ButtonValidation
+                onClick={() => props.actions.theme.changeTheme(themeEvoli)}
+              >
+                {t('settings.evoliTheme')}
+              </ButtonValidation>
+            </DivSelect>
+          </DivChoice>
 
-          <p>{t('menu.title')}</p>
-          <button onClick={() => changeLanguage('fr')}>fr</button>
-          <button onClick={() => changeLanguage('en')}>en</button>
+          <DivChoice>
+            <H1>{t('settings.choicelanguage')}</H1>
+            <DivSelect>
+              <ButtonValidation onClick={() => changeLanguage('fr')}>
+                {t('settings.french')}
+              </ButtonValidation>
+              <ButtonValidation onClick={() => changeLanguage('en')}>
+                {t('settings.english')}
+              </ButtonValidation>
+            </DivSelect>
+            <H1>{t('settings.actuallanguageChoice')}</H1>
+          </DivChoice>
         </Container>
       )}
     </>
   );
 };
+
+const H1 = styled.h1`
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 4em;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 1.5em;
+  }
+`;
+
+const DivChoice = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const DivSelect = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
+
+const ButtonValidation = styled.button`
+  /* text:  */
+  border: none;
+  padding: 10px 5px 10px 5px;
+  border-radius: 75%;
+  border-bottom: 3px solid white;
+  font: bold 13px Arial;
+  color: white;
+  background: red;
+`;
+
 const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background-color: ${props => props.theme.primary};
   height: ${props => props.theme.height};
   background-image: url(${props => props.theme.backgroundimage});
@@ -64,6 +130,7 @@ const Container = styled.div`
   background-repeat: ${props => props.theme.backgroundrepeat};
   background-size: ${props => props.theme.backgroundsize};
 `;
+
 const mapDispatchToProps = () => dispatch => ({
   actions: {
     theme: bindActionCreators(allTheActions.theme, dispatch),

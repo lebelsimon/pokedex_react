@@ -1,6 +1,8 @@
-import background from '../images/testecran.jpg'
+import background from '../images/pokeball_gold.jpg'
 
-import pattern from '../pattern.jpg'
+import destroyedPokeball from '../images/pokeball_destroyed.jpg'
+
+import pokeballEvoli from '../images/pokeball_evoli.jpg'
 
 
 
@@ -18,10 +20,20 @@ const themeDark = {
   primary: 'black',
   secondary: 'red',
   height: '100vh',
-  backgroundimage: pattern,
+  backgroundimage: destroyedPokeball,
   backgroundposition: 'center',
   backgroundrepeat: 'no-repeat',
   backgroundsize: 'cover'
 };
 
-export { themeDark, themeLight };
+const themeEvoli = {
+  primary: 'black',
+  secondary: 'red',
+  height: '100vh',
+  backgroundimage: pokeballEvoli,
+  backgroundposition: 'center',
+  backgroundrepeat: 'no-repeat',
+  backgroundsize: 'cover'
+};
+
+export { themeDark, themeLight, themeEvoli };

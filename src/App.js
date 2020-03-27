@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 
 import { store, persistor } from './config/store';
-import { themeLight, themeDark } from './config/themes';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import Loading from './components/loading/loading'
@@ -20,7 +19,6 @@ function App() {
   useEffect(() => {
     console.log(currentTheme);
     store.subscribe(() => {
-      // console.log("Hello")
       console.log(
         'App -> store.getState().theme.currentTheme',
         store.getState()
