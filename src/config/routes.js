@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 
 import Dashboard from '../components/layout/Dashboard';
-import Pokemon from '../components/pokemon/Pokemon';
+import PokemonDetail from '../screens/PokemonDetailScreen';
 import Capture from '../screens/captureScreen';
 import ListPokemon from '../screens/PokemonListScreen'
 import Settings from '../screens/settings'
@@ -24,7 +24,7 @@ const Routes = () => {
             <Route exact path='/' component={Dashboard} />
             
             <Route path='/loading' component={Loading}/>
-            <Route exact path='/pokemon/:pokemonIndex' component={Pokemon} />
+            <Route exact path='/pokemon/:pokemonIndex' component={PokemonDetail} />
             <Route path='/capture' component={Capture} />
             <Route path='/listPokemon' component={ListPokemon} />
             <Route path='/settings' component={Settings}/>
