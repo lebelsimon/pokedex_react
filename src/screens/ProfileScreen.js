@@ -9,26 +9,36 @@ import styled from 'styled-components'
 
 const ProfileScreen = props => {
   const history = useHistory();
-  useEffect(() => {
-    if (
-      Object.keys(props.userState.user).length === 0 &&
-      props.userState.user.constructor === Object
-    ) {
-      history.push('/login');
-    }
-  }, []);
   return (
     <Container>
       <h1>ProfileScreen</h1>
-      <dl>
-        <dd>Email</dd>
-        <dt>{props.userState.user.email}</dt>
-        <dd>Username</dd>
-        <dt>{props.userState.user.username}</dt>
-      </dl>
+      <DivInfo>
+        <h4>Email : </h4>
+        <h4>{props.userState.user.email}</h4>
+      </DivInfo>
+      <DivInfo>
+      <h4>Username : </h4>
+        <h4>{props.userState.user.username}</h4>
+      </DivInfo>
+      <DivInfo>
+        <h4>Total Pokemon discovered : </h4>
+        <h4>0 / 251</h4>
+      </DivInfo>
+      <DivInfo>
+        <h4>Total Pokemon captured :</h4>
+        <h4> 0 / 251</h4>
+      </DivInfo>
     </Container>
   );
 };
+
+const DivInfo = styled.div`
+width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+`
 
 const Container = styled.div`
   width: 100%;

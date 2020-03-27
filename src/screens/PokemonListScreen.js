@@ -18,17 +18,12 @@ const PokemonListScreen = props => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (Object.keys(props.userState.user).length === 0 && props.userState.user.constructor === Object) {
-      history.push('/login');
-    }
-    else{
     const handler = setTimeout(() => {
       get();
     }, 500);
     return () => {
       clearTimeout(handler);
     };
-  }
   }, [offset]);
 
   const get = async () => {
