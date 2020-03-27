@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 const Settings = props => {
   console.log(props);
   const { t, i18n } = useTranslation();
-  console.log(t)
+  console.log(t);
 
   const [loading, setLoading] = useState(true);
   const changeLanguage = langue => {

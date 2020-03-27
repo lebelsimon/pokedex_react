@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 // import ReactPaginate from 'react-paginate'
-import Counter from '../components/counter'
+import Counter from '../components/counter';
 
 const Timers = () => {
   return (
@@ -10,7 +10,7 @@ const Timers = () => {
       <Counter label='poufsouffle'></Counter>
       <Counter label='serdaigle'></Counter>
     </div>
-  )
-}
+  );
+};
 
-export default Timers
+export default Timers;

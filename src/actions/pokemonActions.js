@@ -17,7 +17,7 @@ export const dispatchOnePokemon = payload => ({
 
 export const pokemonCall = offset => dispatch => {
   axios
-    .get('https://pokeapi.co/api/v2/pokemon/?offset='+offset+'&limit=20')
+    .get('https://pokeapi.co/api/v2/pokemon/?offset=' + offset + '&limit=20')
     .then(res => {
       console.log(res.data);
       dispatch(dispatchPokemons(res.data.results));
@@ -29,7 +29,7 @@ export const getPokemonById = id => dispatch => {
   axios
     .get('https://pokeapi.co/api/v2/pokemon/' + id + '/')
     .then(res => {
-        console.log("Trouvé");
+      console.log('Trouvé');
       console.log(res);
       dispatch(dispatchOnePokemon(res.data));
     })

@@ -19,8 +19,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         onepokemon: action.payload
-      }
+      };
     default:
       return state;
   }
-}
+};
