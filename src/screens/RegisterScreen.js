@@ -29,11 +29,20 @@ const RegisterScreen = (props) => {
 
   return (
     <Container>
-      <h1>SignUp</h1>
+      <H1>SignUp</H1>
       <RegisterForm register={handleSubmit} form={form} setForm={setForm}/>
     </Container>
   )
 };
+
+const H1 = styled.h1`
+@media (max-width: 768px) {
+    font-size: 4em;
+    }
+  
+    @media (max-width: 425px) {
+    }
+`
 
 RegisterScreen.propTypes = {};
 

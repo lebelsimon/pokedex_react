@@ -15,7 +15,7 @@ const RegisterForm = ({ register, form, setForm }) => {
         <FormStyled onSubmit={e => register(e, form, history)}>
           <InputContainer>
             <StyledInput
-              placeholder='username'
+              placeholder='Username'
               name='username'
               onChange={e => setForm({...form, username: e.target.value})}
               type='text'
@@ -111,20 +111,41 @@ const MessageError = styled.div`
 
 const StyledInput = styled.input`
   box-sizing: border-box;
-  height: 45px;
-  padding: 0 10px;
   outline: none;
   margin: 1px 0;
   border: 1px solid rgba(0, 0, 0, 0.6);
+
+  @media (max-width: 768px) {
+  height: 90px;
+  
+  padding: 0 30px;
+    }
+  
+    @media (max-width: 425px) {
+  height: 45px;
+  
+  padding: 0 10px;
+    }
 `;
 
 const SubmitInput = styled.input`
   background-color: #0073b1;
-  height: 45px;
   padding: 0 10px;
   outline: none;
   border: none;
   margin: 1px 0;
+
+  
+@media (max-width: 768px) {
+  height: 90px;
+  padding: 0 30px;
+    }
+  
+    @media (max-width: 425px) {
+  height: 45px;
+  
+  padding: 0 10px;
+    }
 `;
 
 const FormContainer = styled.div``;
