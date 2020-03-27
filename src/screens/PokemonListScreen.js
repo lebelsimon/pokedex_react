@@ -4,24 +4,31 @@ import PokemonCard from '../components/pokemon/PokemonCard';
 
 import './style.css';
 import ReactPaginate from 'react-paginate';
+import {useHistory} from "react-router-dom";
 import styled from 'styled-components';
 import alltheActions from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const PokemonListScreen = props => {
+  const history = useHistory();
   const [page, setPage] = useState(0);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(20);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (Object.keys(props.userState.user).length === 0 && props.userState.user.constructor === Object) {
+      history.push('/login');
+    }
+    else{
     const handler = setTimeout(() => {
       get();
     }, 500);
     return () => {
       clearTimeout(handler);
     };
+  }
   }, [offset]);
 
   const get = async () => {
@@ -36,14 +43,11 @@ const PokemonListScreen = props => {
   };
 
   const handlePageClick = data => {
-    if(data.selected > page){
-    }
     const selected = data.selected;
     const o = Math.ceil(selected * 20);
     setOffset(o);
   };
 
-//className={pokemon.id in props.userState.user.pokemonsCaught ? 'visible' : (pokemon.id in props.userState.user.pokemonsSeen ? 'transparent' : 'invisible')}
   return (
     <PokemonList>
       {props.pokemonState.pokemons.map(pokemon => {
@@ -77,7 +81,7 @@ const PokemonList = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
 
-  height: 100vh;
+  height: ${props => props.theme.height};
 
   background-image: url(${props => props.theme.backgroundimage});
   background-position: ${props => props.theme.backgroundposition};
@@ -93,10 +97,8 @@ const mapDispatchToProps = () => dispatch => ({
 });
 const mapStateToProps = state => ({
   pokemonState: state.pokemon,
-
-  themeState: state.theme,
-
-  userState: state.userActions
+  userState: state.userActions,
+  themeState: state.theme
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonListScreen);

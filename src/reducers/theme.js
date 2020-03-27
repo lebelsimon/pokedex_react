@@ -1,10 +1,10 @@
-import { CHANGE_THEME } from '../actions/theme'
+import { CHANGE_THEME } from '../actions/theme';
 
-import { themeLight, themeDark } from '../config/themes'
+import { themeLight, themeDark } from '../config/themes';
 
 const initialState = {
   currentTheme: themeLight
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -12,9 +12,9 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentTheme: action.payload
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};

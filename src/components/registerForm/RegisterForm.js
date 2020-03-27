@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types'
 // import axios from 'axios'
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 const RegisterForm = ({ register, form, setForm }) => {
   const history = useHistory();
@@ -15,9 +15,9 @@ const RegisterForm = ({ register, form, setForm }) => {
         <FormStyled onSubmit={e => register(e, form, history)}>
           <InputContainer>
             <StyledInput
-              placeholder='username'
+              placeholder='Username'
               name='username'
-              onChange={e => setForm({...form, username: e.target.value})}
+              onChange={e => setForm({ ...form, username: e.target.value })}
               type='text'
               required={true}
             />
@@ -26,17 +26,17 @@ const RegisterForm = ({ register, form, setForm }) => {
             <StyledInput
               placeholder='Entrer Email'
               name='email'
-              onChange={e => setForm({...form, email: e.target.value})}
+              onChange={e => setForm({ ...form, email: e.target.value })}
               type='email'
               required={true}
               onBlur={() =>
                 form.email.length < 8
                   ? setForm({
-                    ...form,
-                    isError: true,
-                    isErrorMessage: 'Mail invalide'
-                  })
-                  : setForm({...form, isError: false})
+                      ...form,
+                      isError: true,
+                      isErrorMessage: 'Mail invalide'
+                    })
+                  : setForm({ ...form, isError: false })
               }
             />
           </InputContainer>
@@ -45,17 +45,17 @@ const RegisterForm = ({ register, form, setForm }) => {
             <StyledInput
               name='password'
               placeholder='Entrer Password'
-              onChange={e => setForm({...form, password: e.target.value})}
+              onChange={e => setForm({ ...form, password: e.target.value })}
               type='password'
               required={true}
               onBlur={() =>
                 form.password.length < 8
                   ? setForm({
-                    ...form,
-                    isError: true,
-                    isErrorMessage: 'Password Invalide'
-                  })
-                  : setForm({...form, isError: false})
+                      ...form,
+                      isError: true,
+                      isErrorMessage: 'Password Invalide'
+                    })
+                  : setForm({ ...form, isError: false })
               }
             />
 
@@ -70,16 +70,16 @@ const RegisterForm = ({ register, form, setForm }) => {
             <StyledInput
               name='password-c'
               placeholder='Entrer Password again'
-              onChange={e => setForm({...form, passwordC: e.target.value})}
+              onChange={e => setForm({ ...form, passwordC: e.target.value })}
               type='password'
               onBlur={() =>
                 form.passwordC !== form.password
                   ? setForm({
-                    ...form,
-                    isError: true,
-                    isErrorMessage: 'Password différents'
-                  })
-                  : setForm({...form, isError: false})
+                      ...form,
+                      isError: true,
+                      isErrorMessage: 'Password différents'
+                    })
+                  : setForm({ ...form, isError: false })
               }
             />
 
@@ -91,12 +91,12 @@ const RegisterForm = ({ register, form, setForm }) => {
           </InputContainer>
 
           <InputContainer>
-            <SubmitInput type='submit' value="S'enregistrer"/>
+            <SubmitInput type='submit' value="S'enregistrer" />
           </InputContainer>
         </FormStyled>
       </FormContainer>
     </AllContainer>
-  )
+  );
 };
 
 const AllContainer = styled.div`
@@ -111,20 +111,41 @@ const MessageError = styled.div`
 
 const StyledInput = styled.input`
   box-sizing: border-box;
-  height: 45px;
-  padding: 0 10px;
   outline: none;
   margin: 1px 0;
   border: 1px solid rgba(0, 0, 0, 0.6);
+
+  @media (max-width: 768px) {
+  height: 90px;
+  
+  padding: 0 30px;
+    }
+  
+    @media (max-width: 425px) {
+  height: 45px;
+  
+  padding: 0 10px;
+    }
 `;
 
 const SubmitInput = styled.input`
   background-color: #0073b1;
-  height: 45px;
   padding: 0 10px;
   outline: none;
   border: none;
   margin: 1px 0;
+
+  
+@media (max-width: 768px) {
+  height: 90px;
+  padding: 0 30px;
+    }
+  
+    @media (max-width: 425px) {
+  height: 45px;
+  
+  padding: 0 10px;
+    }
 `;
 
 const FormContainer = styled.div``;
@@ -139,4 +160,4 @@ const FormStyled = styled.form``;
 
 RegisterForm.propTypes = {};
 
-export default RegisterForm
+export default RegisterForm;

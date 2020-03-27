@@ -18,9 +18,10 @@ export default (state = initialState, action) => {
         user: action.data
       };
     case UNSET_USER:
+      localStorage.removeItem('id_token');
       return {
         ...state,
-        user: {}
+        user: initialState.user
       };
     case UPDATE_USER:
       return {
@@ -28,6 +29,6 @@ export default (state = initialState, action) => {
         user: Object.assign({}, state.user, action.data)
       };
     default:
-      return state
+      return state;
   }
-}
+};

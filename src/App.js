@@ -24,13 +24,13 @@ function App() {
   return (
     <div>
       <Provider store={store}>
-        <PersistGate loading={<Loading/>} persistor={persistor}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
           <ThemeProvider theme={currentTheme}>
             <Routes />
           </ThemeProvider>
         </PersistGate>
       </Provider>
-      <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"/>
+      <script src='https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js' />
     </div>
   );
 }

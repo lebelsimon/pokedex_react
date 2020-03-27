@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import alltheActions from '../../actions'
-import { bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import alltheActions from '../../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 const Counter = props => {
   return (
@@ -15,8 +15,8 @@ const Counter = props => {
         <button onClick={props.actions.counter.decrementCounter}>-</button>
       </div>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   padding: 12px;
@@ -26,18 +26,18 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: 12px;
-`
+`;
 
-Counter.propTypes = {}
+Counter.propTypes = {};
 
-const mapDispatchToProps = () => dispatch =>({
-  actions:{
+const mapDispatchToProps = () => dispatch => ({
+  actions: {
     counter: bindActionCreators(alltheActions.counter, dispatch)
   }
-})
+});
 
 const mapStateToProps = state => ({
   counterState: state.counter
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
