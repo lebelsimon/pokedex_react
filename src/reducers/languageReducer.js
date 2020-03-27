@@ -1,7 +1,7 @@
 import { SAVE_LANGUAGE } from '../actions/language';
 
 const initialState = {
-  language: ['en']
+  language: 'en'
 };
 
 export default (state = initialState, action) => {

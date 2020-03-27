@@ -18,7 +18,6 @@ function App() {
   useEffect(() => {
     console.log(currentTheme);
     store.subscribe(() => {
-      // console.log("Hello")
       console.log(
         'App -> store.getState().theme.currentTheme',
         store.getState()

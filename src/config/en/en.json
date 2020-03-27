@@ -12,6 +12,18 @@
   "pokemonName": "Name : ",
   "pokemonHeight": "Height : ",
   "pokemonWeight": "Weight : "
+  } , 
+
+  "settings":{
+    "choicelanguage": "Choose your language",
+    "background": "Choose your background",
+    "lightTheme": "Gold Pokeball",
+    "darkTheme": "Destroyed Pokeball",
+    "evoliTheme": "Evoli Pokeball",
+    "actuallanguageChoice": "Your actual language is : English ",
+
+    "french": "French",
+    "english": "English"
   }
 }
 }

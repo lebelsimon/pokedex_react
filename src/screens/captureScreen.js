@@ -17,13 +17,11 @@ import { withTranslation } from 'react-i18next';
 import Loading from '../components/loading/loading';
 
 const CaptureScreen = props => {
-  console.log(props.languageState.language);
   const [loading, setLoading] = useState(true);
-  //
-
+  
   useEffect(() => {
     i18next.changeLanguage(props.languageState.language);
-    const idPokemon = Math.round(Math.random() * 151);
+    const idPokemon = Math.round(Math.random() * 251);
     props.actions.pokemon.getPokemonById(idPokemon);
     const handler = setTimeout(() => {
       getPokemonToCapture();
