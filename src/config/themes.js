@@ -1,8 +1,6 @@
-import background from '../images/testecran.jpg'
+import background from '../images/testecran.jpg';
 
-import pattern from '../pattern.jpg'
-
-
+import pattern from '../pattern.jpg';
 
 const themeLight = {
   primary: 'white',

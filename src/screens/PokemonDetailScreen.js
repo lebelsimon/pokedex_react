@@ -45,9 +45,7 @@ const PokemonDetailScreen = props => {
       {loading ? (
         <Loading />
       ) : (
-        
         <DivDetail>
-          
           {console.log(props.pokemonState.onepokemon)}
           <DivBox>
             <DivBoxInner>
@@ -66,7 +64,7 @@ const PokemonDetailScreen = props => {
               </ListStats>
               <h3>Abilities</h3>
               <ListAbilities>
-              {pokemon.abilities.map(ability => (
+                {pokemon.abilities.map(ability => (
                   <OneStat>
                     <h3>{ability.ability.name}</h3>
                   </OneStat>

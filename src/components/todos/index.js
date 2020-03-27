@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import alltheActions from '../../actions'
-import { bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
-import Todo from './todo'
+import alltheActions from '../../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Todo from './todo';
 
 const Todos = props => {
-
-    const [body, setBody] = useState('');
+  const [body, setBody] = useState('');
 
   const handleBodyChange = event => {
-    setBody(event.target.value)
+    setBody(event.target.value);
   };
 
   const handleSubmit = async event => {
@@ -21,42 +20,43 @@ const Todos = props => {
       id: props.crudState.counter,
       content: body
     });
-    
-    setBody('')
 
+    setBody('');
   };
 
   console.log(props);
   return (
     <Container>
-        <form className='post-form'>
-          <InputContainer>
-            <StyledInput
-              type='text'
-              value={body}
-                onChange={handleBodyChange}
-              placeholder='Nouvelle tâche...'
-              required
-            ></StyledInput>
-  
-            <StyledButton onClick={handleSubmit}>Ajouter une tâche</StyledButton>
-          </InputContainer>
-        </form>
+      <form className='post-form'>
+        <InputContainer>
+          <StyledInput
+            type='text'
+            value={body}
+            onChange={handleBodyChange}
+            placeholder='Nouvelle tâche...'
+            required
+          ></StyledInput>
 
-        <DivTodos>
+          <StyledButton onClick={handleSubmit}>Ajouter une tâche</StyledButton>
+        </InputContainer>
+      </form>
+
+      <DivTodos>
         {props.crudState.todos.length > 0 ? (
-            <div className='todos'>
-              {props.crudState.todos.map(todo => (
-                console.log("Hello", todo),
-                  <Todo key={todo.id} todo={todo}></Todo>
-              ))}
-            </div>
-          ) : (
-            <></>
-          )}
-        </DivTodos>
+          <div className='todos'>
+            {props.crudState.todos.map(
+              todo => (
+                console.log('Hello', todo),
+                (<Todo key={todo.id} todo={todo}></Todo>)
+              )
+            )}
+          </div>
+        ) : (
+          <></>
+        )}
+      </DivTodos>
     </Container>
-  )
+  );
 };
 
 const Container = styled.div`
@@ -92,25 +92,24 @@ const StyledButton = styled.button`
   margin: 1px 0px;
 `;
 const DivTodos = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin: 12px;
-  width:100%;
+  width: 100%;
 `;
 
 Todos.propTypes = {};
 
-const mapDispatchToProps = () => dispatch =>({
-    actions:{
-      crud: bindActionCreators(alltheActions.crud, dispatch)
-    }
-  });
-  
-  const mapStateToProps = state => ({
-    crudState: state.crud
-  });
+const mapDispatchToProps = () => dispatch => ({
+  actions: {
+    crud: bindActionCreators(alltheActions.crud, dispatch)
+  }
+});
 
+const mapStateToProps = state => ({
+  crudState: state.crud
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todos)
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);

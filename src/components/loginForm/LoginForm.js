@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 // import PropTypes from 'prop-types'
 // import axios from 'axios'
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 const LoginForm = ({ login, form, setForm }) => {
   const history = useHistory();
@@ -17,38 +17,38 @@ const LoginForm = ({ login, form, setForm }) => {
             <StyledInput
               placeholder='Entrer Email'
               name='email'
-              onChange={e => setForm({...form, email: e.target.value})}
+              onChange={e => setForm({ ...form, email: e.target.value })}
               type='email'
               required={true}
               onBlur={() =>
                 form.email.length < 8
                   ? setForm({
-                    ...form,
-                    isError: true,
-                    isErrorMessage: 'Mail invalide'
-                  })
-                  : setForm({...form, isError: false})
+                      ...form,
+                      isError: true,
+                      isErrorMessage: 'Mail invalide'
+                    })
+                  : setForm({ ...form, isError: false })
               }
-              />
+            />
           </InputContainer>
 
           <InputContainer>
             <StyledInput
               name='password'
               placeholder='Entrer Password'
-              onChange={e => setForm({...form, password: e.target.value})}
+              onChange={e => setForm({ ...form, password: e.target.value })}
               type='password'
               required={true}
               onBlur={() =>
                 form.password.length < 8
                   ? setForm({
-                    ...form,
-                    isError: true,
-                    isErrorMessage: 'Password Invalide'
-                  })
-                  : setForm({...form, isError: false})
+                      ...form,
+                      isError: true,
+                      isErrorMessage: 'Password Invalide'
+                    })
+                  : setForm({ ...form, isError: false })
               }
-              />
+            />
 
             {form.isError ? (
               <MessageError>
@@ -58,12 +58,12 @@ const LoginForm = ({ login, form, setForm }) => {
           </InputContainer>
 
           <InputContainer>
-            <SubmitInput type='submit' value="S'identifier"/>
+            <SubmitInput type='submit' value="S'identifier" />
           </InputContainer>
         </FormStyled>
       </FormContainer>
     </AllContainer>
-  )
+  );
 };
 
 const AllContainer = styled.div`
@@ -106,4 +106,4 @@ const FormStyled = styled.form``;
 
 LoginForm.propTypes = {};
 
-export default LoginForm
+export default LoginForm;

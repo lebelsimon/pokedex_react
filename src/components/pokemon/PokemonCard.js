@@ -16,7 +16,11 @@ const PokemonCard = ({ pokemon }) => {
       <Link to={`pokemon/${pokemonIndex}`}>
         <Card>
           {loading ? (
-            <img src={spinner} style={{width: '5em', height: '5em'}} alt='loader'/>
+            <img
+              src={spinner}
+              style={{ width: '5em', height: '5em' }}
+              alt='loader'
+            />
           ) : null}
           <Sprite
             onLoad={() => setLoading(false)}
