@@ -3,6 +3,8 @@ import {bindActionCreators} from "redux";
 import alltheActions from "../actions";
 import {connect} from "react-redux";
 import {useHistory} from "react-router-dom";
+
+import styled from 'styled-components'
 // import ReactPaginate from 'react-paginate'
 
 const ProfileScreen = props => {
@@ -13,15 +15,29 @@ const ProfileScreen = props => {
     }
   }, []);
   return (
-    <div>
+    <Container>
       <h1>ProfileScreen</h1>
       <dl>
         <dd>Email</dd><dt>{props.userState.user.email}</dt>
         <dd>Username</dd><dt>{props.userState.user.username}</dt>
       </dl>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  height: ${props => props.theme.height};
+  background-image: url(${props => props.theme.backgroundimage});
+  background-position: ${props => props.theme.backgroundposition};
+  background-repeat: ${props => props.theme.backgroundrepeat};
+  background-size: ${props => props.theme.backgroundsize};
+`;
 
 const mapDispatchToProps = () => dispatch =>({
   actions:{
@@ -30,7 +46,8 @@ const mapDispatchToProps = () => dispatch =>({
 });
 
 const mapStateToProps = state => ({
-  userState: state.userActions
+  userState: state.userActions,
+  themeState: state.theme
 });
 
 ProfileScreen.propTypes = {};
