@@ -6,7 +6,6 @@ import { bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 const Counter = props => {
-  console.log(props)
   return (
     <Container>
       <p>{props.label}</p>

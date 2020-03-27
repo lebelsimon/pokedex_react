@@ -10,7 +10,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const PokemonListScreen = props => {
-  console.log(props)
   const [page, setPage] = useState(0);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(20);
@@ -27,10 +26,8 @@ const PokemonListScreen = props => {
 
   const get = async () => {
     try {
-      console.log(props);
       props.actions.pokemon.pokemonCall(offset);
       setPage(251 / 20);
-      console.log(page);
     } catch (err) {
       console.log(err);
     } finally {
@@ -39,9 +36,6 @@ const PokemonListScreen = props => {
   };
 
   const handlePageClick = data => {
-    console.log('data', data);
-    
-    console.log('page', Math.round(page));
     if(data.selected > page){
     }
     const selected = data.selected;

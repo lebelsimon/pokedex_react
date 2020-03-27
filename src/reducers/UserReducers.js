@@ -1,7 +1,13 @@
-import {SET_USER, UNSET_USER} from '../actions/UserActions'
+import {SET_USER, UNSET_USER, UPDATE_USER} from '../actions/UserActions'
 
 const initialState = {
-  user: {}
+  user: {
+    username: '',
+    email: '',
+    localId: '',
+    pokemonsCaught: [],
+    pokemonsSeen: []
+  }
 };
 
 export default (state = initialState, action) => {
@@ -15,6 +21,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: {}
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: Object.assign({}, state.user, action.data)
       };
     default:
       return state

@@ -13,7 +13,6 @@ import { withTranslation } from 'react-i18next';
 import Loading from '../components/loading/loading';
 
 const PokemonDetailScreen = props => {
-  console.log(props);
   const [loading, setLoading] = useState(true);
   const [pokemon, setPokemon] = useState([]);
   const [imageUrl, setImageUrl] = useState('');
@@ -48,7 +47,6 @@ const PokemonDetailScreen = props => {
         
         <DivDetail>
           
-          {console.log(props.pokemonState.onepokemon)}
           <DivBox>
             <DivBoxInner>
               <h1>{pokemon.name}</h1>

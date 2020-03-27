@@ -8,10 +8,12 @@ import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import { useTranslation } from 'react-i18next';
+import { bindActionCreators } from 'redux';
+import alltheActions from '../../actions';
+import { connect } from 'react-redux';
 
-const PokemonCapture = ({ pokemon }) => {
+const PokemonCapture = ({ pokemon, actions }) => {
   const { t, i18n } = useTranslation();
-  console.log(pokemon);
   const history = useHistory();
   const [rotate, setrotate] = useState(true);
   const [capturing, setcapturing] = useState(false);
@@ -25,7 +27,11 @@ const PokemonCapture = ({ pokemon }) => {
     setcapturing(true);
     const tryCapture = Math.round(Math.random() * 100);
     if (tryCapture > 40) {
+      actions.userActions.addPokemonIdCaught({pokemonCaught: pokemon.id});
+      actions.userActions.addPokemonIdSeen({pokemonSeen: pokemon.id});
       setsuccess(true);
+    } else {
+      actions.userActions.addPokemonIdSeen({pokemonSeen: pokemon.id});
     }
   };
 
@@ -85,7 +91,6 @@ const PokemonCapture = ({ pokemon }) => {
               <b>Type(s) : </b>
               {pokemon.types.map(
                 type => (
-                  console.log(type.type.name),
                   (<ParagrapheType>{type.type.name}</ParagrapheType>)
                 )
               )}
@@ -195,4 +200,17 @@ const DivDetail = styled.div`
   flex-direction: column;
 `;
 
-export default PokemonCapture;
+
+const mapDispatchToProps = () => dispatch =>({
+  actions:{
+    userActions: bindActionCreators(alltheActions.userActions, dispatch)
+  }
+});
+
+const mapStateToProps = state => ({
+  userState: state.userActions
+});
+
+PokemonCapture.propTypes = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonCapture);

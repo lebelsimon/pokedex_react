@@ -17,7 +17,6 @@ import { withTranslation } from 'react-i18next';
 import Loading from '../components/loading/loading';
 
 const CaptureScreen = props => {
-  console.log(props.languageState.language);
   const [loading, setLoading] = useState(true);
   //
 
@@ -46,7 +45,6 @@ const CaptureScreen = props => {
         <Loading />
       ) : (
         <PokemonList>
-          {console.log(props.pokemonState.onepokemon)}
           <PokemonCapture
             pokemon={props.pokemonState.onepokemon}
           ></PokemonCapture>

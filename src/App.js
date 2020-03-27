@@ -7,22 +7,16 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './config/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import Loading from './components/loading/loading'
+import Loading from './components/loading/loading';
 import './App.css';
-import './config/translations'
+import './config/translations';
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState(
     store.getState().theme.currentTheme
   );
   useEffect(() => {
-    console.log(currentTheme);
     store.subscribe(() => {
-      // console.log("Hello")
-      console.log(
-        'App -> store.getState().theme.currentTheme',
-        store.getState()
-      );
       setCurrentTheme(store.getState().theme.currentTheme);
     });
   });

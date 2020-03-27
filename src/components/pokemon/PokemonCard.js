@@ -4,7 +4,6 @@ import spinner from './simple_pokeball.gif';
 import { Link } from 'react-router-dom';
 
 const PokemonCard = ({ pokemon }) => {
-  console.log(pokemon);
   const [loading, setLoading] = useState(true);
 
   const [toManyRequest, settoManyRequest] = useState(false);
