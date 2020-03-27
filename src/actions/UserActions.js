@@ -28,14 +28,16 @@ export const updateUser = data => ({
 //   }
 // }
 
-export const addPokemonIdCaught = ( data ) => ( dispatch, getState ) => {
+export const addPokemonCaught = (data ) => (dispatch, getState ) => {
   axios.get(firebaseConfig.databaseURL + '/users/' + getState().userActions.user.localId + '.json')
     .then(response => {
       axios.patch(firebaseConfig.databaseURL + '/users/' + getState().userActions.user.localId + '.json', {
         // add the caught pokemon to the list in firebase
         pokemonsCaught: [data.pokemonCaught].concat(response.data.pokemonsCaught)
       }).then((_) => {
-        dispatch(updateUser([data.pokemonCaught].concat(response.data.pokemonsCaught)));
+        dispatch(updateUser({
+          pokemonsCaught: [data.pokemonCaught].concat(response.data.pokemonsCaught)
+        }));
       }).catch((e) => {
         console.log(e);
       });
@@ -44,14 +46,16 @@ export const addPokemonIdCaught = ( data ) => ( dispatch, getState ) => {
     });
 };
 
-export const addPokemonIdSeen = ( data ) => ( dispatch, getState ) => {
+export const addPokemonSeen = (data ) => (dispatch, getState ) => {
   axios.get(firebaseConfig.databaseURL + '/users/' + getState().userActions.user.localId + '.json')
     .then(response => {
         axios.patch(firebaseConfig.databaseURL + '/users/' + getState().userActions.user.localId + '.json', {
           // add the seen pokemon to the list in firebase
           pokemonsSeen: [data.pokemonSeen].concat(response.data.pokemonsSeen)
         }).then(_ => {
-          dispatch(updateUser([data.pokemonSeen].concat(response.data.pokemonsSeen)));
+          dispatch(updateUser({
+            pokemonsSeen: [data.pokemonSeen].concat(response.data.pokemonsSeen)
+          }));
         }).catch((e) => {
           console.log(e);
         });

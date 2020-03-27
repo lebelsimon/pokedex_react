@@ -12,9 +12,6 @@ const NavBar = () => {
         <Link to="/login" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
           Login
         </Link>
-        <Link to="/register" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
-          Register
-        </Link>
         <Link to="/profile" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
           Profile
         </Link>
@@ -23,6 +20,9 @@ const NavBar = () => {
         </Link>
         <Link to="/settings" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
           Settings
+        </Link>
+        <Link to="/capture" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
+          Chasser
         </Link>
       </nav>
     </div>

@@ -3,16 +3,14 @@ import styled from 'styled-components';
 import spinner from './simple_pokeball.gif';
 import { Link } from 'react-router-dom';
 
-const PokemonCard = ({ pokemon }) => {
+const PokemonCard = ({ pokemon, imgUrl, caught }) => {
   const [loading, setLoading] = useState(true);
-
   const [toManyRequest, settoManyRequest] = useState(false);
   const pokemonIndex = pokemon.url.split('/')[6];
-  const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true`;
 
   return (
     <DivDetail>
-      <Link to={`pokemon/${pokemonIndex}`}>
+      <Link to={caught ? `pokemon/${pokemonIndex}` : '#'}>
         <Card>
           {loading ? (
             <img src={spinner} style={{width: '5em', height: '5em'}} alt='loader'/>
@@ -20,7 +18,7 @@ const PokemonCard = ({ pokemon }) => {
           <Sprite
             onLoad={() => setLoading(false)}
             onError={() => settoManyRequest(true)}
-            src={imageUrl}
+            src={imgUrl}
             style={
               toManyRequest
                 ? { display: 'none' }

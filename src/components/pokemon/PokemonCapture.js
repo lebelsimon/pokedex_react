@@ -27,11 +27,11 @@ const PokemonCapture = ({ pokemon, actions }) => {
     setcapturing(true);
     const tryCapture = Math.round(Math.random() * 100);
     if (tryCapture > 40) {
-      actions.userActions.addPokemonIdCaught({pokemonCaught: pokemon.id});
-      actions.userActions.addPokemonIdSeen({pokemonSeen: pokemon.id});
+      actions.userActions.addPokemonCaught({pokemonCaught: pokemon.name});
+      actions.userActions.addPokemonSeen({pokemonSeen: pokemon.name});
       setsuccess(true);
     } else {
-      actions.userActions.addPokemonIdSeen({pokemonSeen: pokemon.id});
+      actions.userActions.addPokemonSeen({pokemonSeen: pokemon.name});
     }
   };
 

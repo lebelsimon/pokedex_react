@@ -43,12 +43,15 @@ const PokemonListScreen = props => {
     setOffset(o);
   };
 
-
+//className={pokemon.id in props.userState.user.pokemonsCaught ? 'visible' : (pokemon.id in props.userState.user.pokemonsSeen ? 'transparent' : 'invisible')}
   return (
     <PokemonList>
-      {props.pokemonState.pokemons.map(pokemon => (
-        <PokemonCard key={pokemon.name} pokemon={pokemon}></PokemonCard>
-      ))}
+      {props.pokemonState.pokemons.map(pokemon => {
+        const pokemonIndex = pokemon.url.split('/')[6];
+        return(
+          <PokemonCard key={pokemon.name} pokemon={pokemon} caught={props.userState.user.pokemonsCaught.includes(pokemon.name)} imgUrl={props.userState.user.pokemonsCaught.includes(pokemon.name) || props.userState.user.pokemonsSeen.includes(pokemon.name) ? `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true` : 'https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/0.png?raw=true'}/>
+        )
+      })}
 
       <ReactPaginate
         previousLabel={'<'}
@@ -91,7 +94,9 @@ const mapDispatchToProps = () => dispatch => ({
 const mapStateToProps = state => ({
   pokemonState: state.pokemon,
 
-  themeState: state.theme
+  themeState: state.theme,
+
+  userState: state.userActions
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonListScreen);
