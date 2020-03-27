@@ -112,7 +112,6 @@ const ButtonValidation = styled.button`
   padding: 10px 5px 10px 5px;
   border-radius: 75%;
   border-bottom: 3px solid white;
-  
   color: white;
   background: red;
 
@@ -123,7 +122,6 @@ const ButtonValidation = styled.button`
   @media (max-width: 425px) {
     font: bold 13px Arial;
   }
-
 `;
 
 const Container = styled.div`

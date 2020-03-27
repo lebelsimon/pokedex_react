@@ -1,58 +1,45 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import './style.css';
+import './sideDrawer/DrawerToggleButton';
+import DrawerToggleButton from './sideDrawer/DrawerToggleButton';
+import logo from '../../images/logo.png'
 
-const NavBar = () => {
-  return (
-    <Container>
-      <nav className="navbar navbar-expend-md navbar-dark fixed-top">
-        <Link to="/listPokemon" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
-          Pokédex
-        </Link>
-        <Link
-          to='/login'
-          className='navbar-brand col-sm-3 col-md-2 mr-0 align-items-center'
-        >
-          Login
-        </Link>
-        <Link to="/profile" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
-          Profile
-        </Link>
-        <Link
-          to='/disconnect'
-          className='navbar-brand col-sm-3 col-md-2 mr-0 align-items-center'
-        >
-          Disconnect
-        </Link>
-        <Link
-          to='/settings'
-          className='navbar-brand col-sm-3 col-md-2 mr-0 align-items-center'
-        >
-          Settings
-        </Link>
-        <Link to="/capture" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
-          Chasser
-        </Link>
-      </nav>
-    </Container>
-  )
-};
+const NavBar = props => (
+  <header className='toolbar'>
+    <nav className='toolbar__navigation'>
+      <div>
+        <DrawerToggleButton onClick={props.onClick} />
+      </div>
+      <div className='toolbar__logo'>
+        <a href='/listPokemon'><img src={logo} alt="Pokemon"/></a>
+      </div>
 
-const Container = styled.div`
-position: absolute;
-display: flex;
-justify-content:space-between;
- @media (max-width: 768px) {
-    
-  padding: 0 30px;
-  height: 90px;
-  }
+      <div className='spacer' />
 
-  @media (max-width: 425px) {
-    
-  padding: 0 10px;
-  height: 45px;
-  }
-`;
+      <div className='toolbar__navigation-items'>
+        <ul>
+          <li>
+            <a href='/listPokemon'>Pokédex</a>
+          </li>
+          <li>
+            <a href='/login'>Login</a>
+          </li>
+          <li>
+            <a href='/register'>Register</a>
+          </li>
+          <li>
+            <a href='/profile'>Profile</a>
+          </li>
+          <li>
+            <a href='/settings'>Settings</a>
+          </li>
+          <li>
+            <a href='/disconnect'>Disconnect</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+);
 
 export default NavBar;
