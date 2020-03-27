@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <div>
+    <Container>
       <nav className="navbar navbar-expend-md navbar-dark fixed-top">
         <Link to="/listPokemon" className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
           Pokédex
@@ -25,8 +25,11 @@ const NavBar = () => {
           Settings
         </Link>
       </nav>
-    </div>
+    </Container>
   )
 };
+
+const Container = styled.div`
+position: absolute;`;
 
 export default NavBar;

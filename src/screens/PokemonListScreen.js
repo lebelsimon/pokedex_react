@@ -80,7 +80,7 @@ const PokemonList = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
 
-  height: 100vh;
+  height: ${props => props.theme.height};
 
   background-image: url(${props => props.theme.backgroundimage});
   background-position: ${props => props.theme.backgroundposition};

@@ -68,8 +68,9 @@ const LoginForm = ({ login, form, setForm }) => {
 
 const AllContainer = styled.div`
   display: flex;
+  align-items:center;
+  justify-content: center;
   flex-direction: column;
-  flex-grow: 1;
 `;
 
 const MessageError = styled.div`
