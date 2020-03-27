@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 // import PropTypes from 'prop-types'
 // import axios from 'axios'
 
@@ -6,56 +6,49 @@ import styled from 'styled-components'
 
 import { useHistory } from 'react-router-dom'
 
-const LoginForm = ({ submit }) => {
-  const history = useHistory()
-  const [form, setForm] = useState({
-    username: '',
-    password: '',
-    isError: false,
-    isErrorMessage: ''
-  })
-  useEffect(() => {
-    console.log(form.username.length)
-  })
+const LoginForm = ({ login, form, setForm }) => {
+  const history = useHistory();
 
   return (
     <AllContainer>
       <FormContainer>
-        <FormStyled onSubmit={e => submit(e, form, history)}>
+        <FormStyled onSubmit={e => login(e, form, history)}>
           <InputContainer>
             <StyledInput
               placeholder='Entrer Email'
-              name='username'
-              onChange={e => setForm({ ...form, username: e.target.value })}
-              type='text'
+              name='email'
+              onChange={e => setForm({...form, email: e.target.value})}
+              type='email'
+              required={true}
               onBlur={() =>
-                form.username.length < 8
+                form.email.length < 8
                   ? setForm({
-                      ...form,
-                      isError: true,
-                      isErrorMessage: 'Mail invalide'
-                    })
-                  : setForm({ ...form, isError: false })
+                    ...form,
+                    isError: true,
+                    isErrorMessage: 'Mail invalide'
+                  })
+                  : setForm({...form, isError: false})
               }
-            ></StyledInput>
+              />
           </InputContainer>
 
           <InputContainer>
             <StyledInput
               name='password'
               placeholder='Entrer Password'
-              onChange={e => setForm({ ...form, password: e.target.value })}
+              onChange={e => setForm({...form, password: e.target.value})}
               type='password'
+              required={true}
               onBlur={() =>
                 form.password.length < 8
                   ? setForm({
-                      ...form,
-                      isError: true,
-                      isErrorMessage: 'Password Invalide'
-                    })
-                  : setForm({ ...form, isError: false })
+                    ...form,
+                    isError: true,
+                    isErrorMessage: 'Password Invalide'
+                  })
+                  : setForm({...form, isError: false})
               }
-            ></StyledInput>
+              />
 
             {form.isError ? (
               <MessageError>
@@ -65,52 +58,52 @@ const LoginForm = ({ submit }) => {
           </InputContainer>
 
           <InputContainer>
-            <SubmitInput type='submit' value="S'identifier"></SubmitInput>
+            <SubmitInput type='submit' value="S'identifier"/>
           </InputContainer>
         </FormStyled>
       </FormContainer>
     </AllContainer>
   )
-}
+};
 
 const AllContainer = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-`
+`;
 
-const MessageError = styled.div``
+const MessageError = styled.div`
+  color: red;
+`;
 
 const StyledInput = styled.input`
   box-sizing: border-box;
   height: 45px;
-  padding: 0px 10px;
+  padding: 0 10px;
   outline: none;
-  border: none;
-  margin: 1px 0px;
+  margin: 1px 0;
   border: 1px solid rgba(0, 0, 0, 0.6);
-`
+`;
 
 const SubmitInput = styled.input`
   background-color: #0073b1;
   height: 45px;
-  padding: 0px 10px;
+  padding: 0 10px;
   outline: none;
   border: none;
-  margin: 1px 0px;
-`
+  margin: 1px 0;
+`;
 
-const FormContainer = styled.div``
+const FormContainer = styled.div``;
 
 const InputContainer = styled.div`
   padding: 12px;
   display: flex;
   flex-direction: column;
-`
+`;
 
-const FormStyled = styled.form``
+const FormStyled = styled.form``;
 
-LoginForm.propTypes = {}
+LoginForm.propTypes = {};
 
 export default LoginForm

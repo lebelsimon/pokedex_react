@@ -8,7 +8,6 @@ import { store, persistor } from './config/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import Loading from './components/loading/loading'
-
 import './App.css';
 import './config/translations'
 
@@ -26,15 +25,18 @@ function App() {
       setCurrentTheme(store.getState().theme.currentTheme);
     });
   });
-  
+
   return (
-    <Provider store={store}>
-      <PersistGate loading={<Loading/>} persistor={persistor}>
-        <ThemeProvider theme={currentTheme}>
-          <Routes />
-        </ThemeProvider>
-      </PersistGate>
-    </Provider>
+    <div>
+      <Provider store={store}>
+        <PersistGate loading={<Loading/>} persistor={persistor}>
+          <ThemeProvider theme={currentTheme}>
+            <Routes />
+          </ThemeProvider>
+        </PersistGate>
+      </Provider>
+      <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"/>
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@ import spinner from './simple_pokeball.gif';
 import { Link } from 'react-router-dom';
 
 const PokemonCard = ({ pokemon }) => {
-  console.log(pokemon)
+  console.log(pokemon);
   const [loading, setLoading] = useState(true);
 
   const [toManyRequest, settoManyRequest] = useState(false);
@@ -16,7 +16,7 @@ const PokemonCard = ({ pokemon }) => {
       <Link to={`pokemon/${pokemonIndex}`}>
         <Card>
           {loading ? (
-            <img src={spinner} style={{ width: '5em', height: '5em' }}></img>
+            <img src={spinner} style={{width: '5em', height: '5em'}} alt='loader'/>
           ) : null}
           <Sprite
             onLoad={() => setLoading(false)}

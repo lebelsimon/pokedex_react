@@ -10,10 +10,10 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
     key: 'root',
     storage,
-  }
+  };
   
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = createStore(persistedReducer, applyMiddleware(logger, thunk));
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
