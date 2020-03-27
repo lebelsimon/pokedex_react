@@ -75,7 +75,7 @@ const PokemonListScreen = props => {
 };
 
 const PokemonList = styled.div`
-  width: 100%;
+  margin-top: 55px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
