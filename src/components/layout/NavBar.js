@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import './sideDrawer/DrawerToggleButton';
 import DrawerToggleButton from './sideDrawer/DrawerToggleButton';
+import logo from '../../images/logo.png'
 
 const NavBar = props => (
   <header className='toolbar'>
@@ -10,7 +11,7 @@ const NavBar = props => (
         <DrawerToggleButton onClick={props.onClick} />
       </div>
       <div className='toolbar__logo'>
-        <a href='/'>THE LOGO</a>
+        <a href='/listPokemon'><img src={logo} alt="Pokemon"/></a>
       </div>
 
       <div className='spacer' />
