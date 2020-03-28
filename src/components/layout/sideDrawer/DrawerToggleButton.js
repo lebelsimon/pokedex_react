@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components'
 import './DrawerToggleButton.css';
 
 const DrawerToggleButton = props => {
@@ -10,5 +11,18 @@ const DrawerToggleButton = props => {
     </button>
   );
 };
+
+const DivToggleButton = styled.div`
+display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+    width: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    box-sizing: border-box;
+    `
 
 export default DrawerToggleButton;

@@ -26,7 +26,6 @@ import PublicRoute from './publicRoute';
 const Routes = () => {
   return (
     <Router>
-      <div className='App' style={{ background: `url(${backgroundImage})` }}>
         <div className='container'>
           <Switch>
             <Route path='/loading' component={Loading} />
@@ -47,7 +46,6 @@ const Routes = () => {
             <Redirect to='/notFound' />
           </Switch>
         </div>
-      </div>
     </Router>
   );
 };
