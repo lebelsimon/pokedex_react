@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 
 import backgroundImage from '../pattern.jpg';
-import NavBar from '../components/layout/NavBar';
 import Pokemon from '../components/pokemon/Pokemon';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
@@ -27,7 +26,6 @@ import PublicRoute from './publicRoute';
 const Routes = () => {
   return (
     <Router>
-        <NavBar />
         <div className='container'>
           <Switch>
             <Route path='/loading' component={Loading} />

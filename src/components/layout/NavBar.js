@@ -1,92 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
-import {bindActionCreators} from "redux";
-import alltheActions from "../../actions";
-import {connect} from "react-redux";
-import { motion } from 'framer-motion';
+import React from 'react';
+import './style.css';
+import './sideDrawer/DrawerToggleButton';
+import DrawerToggleButton from './sideDrawer/DrawerToggleButton';
+import logo from '../../images/logo.png'
 
 const NavBar = props => {
-  const [isLoggedin, setisLoggedin] = useState(false);
-  console.log(props)
   
-  useEffect(() => {
-    
-  }, []);
+  console.log(props);
   return (
-    <Container>
-      <Menu>
-        <nav>
-          <Link
-            to='/listPokemon'>
-            Pokédex
-          </Link>
-          <Link
-            to='/login'>
-            Login
-          </Link>
-          <Link
-            to='/profile'>
-            Profile
-          </Link>
-          <Link
-            to='/disconnect'>
-            Disconnect
-          </Link>
-          <Link
-            to='/settings'>
-            Settings
-          </Link>
-        </nav>
-      </Menu>
-
-      {/* <p
-        onClick={() => {
-          setMenu(menu === 'visible' ? 'hidden' : 'visible')
-        }}
-      >
-        Burger
-      </p> */}
-    </Container>
+    <header className='toolbar'>
+    <nav className='toolbar__navigation'>
+      <div>
+        <DrawerToggleButton onClick={props.onClick} />
+      </div>
+      <div className='toolbar__logo'>
+        <a href='/listPokemon'><img src={logo} alt="Pokemon"/></a>
+      </div>
+    </nav>
+  </header>
   );
 };
 
-const menuVariants = {
-  visible: {
-    x: 0
-  },
-  hidden: { x: -400 }
-}
-
-const Menu = styled(motion.div)`
-  width: 100%
-  background-color: red;
-`
-
-const Container = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  @media (max-width: 768px) {
-    padding: 0 30px;
-    height: 90px;
-  }
-
-  @media (max-width: 425px) {
-    padding: 0 10px;
-    height: 45px;
-  }
-`;
-const mapStateToProps = state => ({
-  userState: state.userActions
-});
-
-const mapDispatchToProps = () => dispatch =>({
-  actions:{
-    userActions: bindActionCreators(alltheActions.userActions, dispatch)
-  }
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default NavBar;
