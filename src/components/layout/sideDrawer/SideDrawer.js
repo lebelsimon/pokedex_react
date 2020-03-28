@@ -19,6 +19,9 @@ const SideDrawer = () => (
       <li>
         <a href='/disconnect'>Disconnect</a>
       </li>
+      <li>
+        <a href='/capture'>Capture</a>
+      </li>
     </ul>
   </nav>
 );
