@@ -28,12 +28,6 @@ const Routes = () => {
     <Router>
         <div className='container'>
           <Switch>
-            <Route path='/loading' component={Loading} />
-            <Route
-              exact
-              path='/pokemon/:pokemonIndex'
-              component={PokemonDetail}
-            />
             <PrivateRoute path='/capture' component={Capture} />
             <PrivateRoute path='/listPokemon' component={ListPokemon} />
             <PrivateRoute path='/settings' component={Settings} />
@@ -43,7 +37,7 @@ const Routes = () => {
             <PrivateRoute path='/profile' component={ProfileScreen} />
             <PrivateRoute path='/disconnect' component={DisconnectScreen} />
             <PublicRoute path='/notFound' component={NotFoundScreen} />
-            <Redirect to='/notFound' />
+            <Redirect to='/login' />
           </Switch>
         </div>
     </Router>

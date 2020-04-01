@@ -19,10 +19,6 @@ const PokemonCapture = ({ pokemon, actions }) => {
   const [capturing, setcapturing] = useState(false);
   const [success, setsuccess] = useState(false);
 
-  const finishCapture = async event => {
-    history.push('/listPokemon');
-  };
-
   const handleCapturing = () => {
     setcapturing(true);
     const tryCapture = Math.round(Math.random() * 100);
@@ -61,7 +57,11 @@ const PokemonCapture = ({ pokemon, actions }) => {
                 transition={{ duration: rotate ? 1 : 1 }}
               ></ImagePokeball>
             </DivTest>
-            <ButtonValidation onClick={finishCapture}>Pokedex</ButtonValidation>
+            <ButtonValidation onClick={() => history.push('/listPokemon')}>Pokedex</ButtonValidation>
+            
+            <ButtonValidation onClick={() => history.push('/profile')}>Profile</ButtonValidation>
+            
+            <ButtonValidation onClick={() => window.location.reload()}>Capture</ButtonValidation>
           </>
         ) : (
           <>
@@ -70,7 +70,11 @@ const PokemonCapture = ({ pokemon, actions }) => {
             <DivTest>
               <img src={failCapture}></img>
             </DivTest>
-            <ButtonValidation onClick={finishCapture}>Pokedex</ButtonValidation>
+            
+            <ButtonValidation onClick={() => history.push('/listPokemon')}>Pokedex</ButtonValidation>
+            
+            <ButtonValidation onClick={() => history.push('/Profile')}>Profile</ButtonValidation>
+            <ButtonValidation onClick={() => window.location.reload()}>Capture</ButtonValidation>
           </>
         )
       ) : (

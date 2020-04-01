@@ -17,7 +17,7 @@ const LoginScreen = props => {
   const handleSubmit = (e, form, history) => {
     e.preventDefault();
     props.actions.userActions
-      .loginFirebase({
+      .login({
         email: form.email,
         password: form.password
       })

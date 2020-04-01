@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import RegisterForm from '../components/registerForm/RegisterForm';
-import styled from 'styled-components'
-import alltheActions from '../actions'
-import { bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import styled from 'styled-components';
+import alltheActions from '../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 const RegisterScreen = props => {
   const [form, setForm] = useState({
@@ -17,13 +17,20 @@ const RegisterScreen = props => {
   const handleSubmit = (e, form, history) => {
     e.preventDefault();
     props.actions.userActions
-      .registerFirebase({
+      .register({
         email: form.email,
         password: form.password,
         username: form.username
       })
       .then(() => {
-        history.push('/profile');
+        props.actions.userActions
+          .login({
+            email: form.email,
+            password: form.password
+          })
+          .then(() => {
+            history.push('/profile');
+          });
       })
       .catch(e => {
         setForm({
@@ -37,19 +44,19 @@ const RegisterScreen = props => {
   return (
     <Container>
       <H1>SignUp</H1>
-      <RegisterForm register={handleSubmit} form={form} setForm={setForm}/>
+      <RegisterForm register={handleSubmit} form={form} setForm={setForm} />
     </Container>
-  )
+  );
 };
 
 const H1 = styled.h1`
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     font-size: 4em;
-    }
-  
-    @media (max-width: 425px) {
-    }
-`
+  }
+
+  @media (max-width: 425px) {
+  }
+`;
 
 RegisterScreen.propTypes = {};
 
@@ -67,8 +74,8 @@ const Container = styled.div`
   background-size: ${props => props.theme.backgroundsize};
 `;
 
-const mapDispatchToProps = () => dispatch =>({
-  actions:{
+const mapDispatchToProps = () => dispatch => ({
+  actions: {
     userActions: bindActionCreators(alltheActions.userActions, dispatch)
   }
 });

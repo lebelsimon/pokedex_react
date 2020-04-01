@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
-import axios from 'axios';
+import axios from '../config/axios';
+
+import * as firebase from 'firebase';
+
 import firebaseConfig from '../config/firebase';
 
 export const SET_USER = 'SET_USER';
@@ -36,35 +39,25 @@ export const updateUser = data => ({
 //   }
 // }
 
-export const addPokemonCaught = (data ) => (dispatch, getState ) => {
-  axios.get(firebaseConfig.databaseURL + '/users/' + getState().userActions.user.localId + '.json')
-    .then(response => {
-      axios.patch(firebaseConfig.databaseURL + '/users/' + getState().userActions.user.localId + '.json', {
-        // add the caught pokemon to the list in firebase
-        pokemonsCaught: [data.pokemonCaught].concat(response.data.pokemonsCaught)
-      }).then((_) => {
-        dispatch(updateUser({
-          pokemonsCaught: [data.pokemonCaught].concat(response.data.pokemonsCaught)
-        }));
-      }).catch((e) => {
-        console.log(e);
-      });
-    }).catch(e => {
-      console.log(e);
-    });
-};
+export const addPokemonCaught = data => (dispatch, getState) => {
+  console.log('data', data);
 
-export const addPokemonSeen = (data ) => (dispatch, getState ) => {
-  axios.get(firebaseConfig.databaseURL + '/users/' + getState().userActions.user.localId + '.json')
+  axios
+    .get('/user/' + getState().userActions.user.localId)
     .then(response => {
-        axios.patch(firebaseConfig.databaseURL + '/users/' + getState().userActions.user.localId + '.json', {
-          // add the seen pokemon to the list in firebase
-          pokemonsSeen: [data.pokemonSeen].concat(response.data.pokemonsSeen)
-        }).then(_ => {
-          dispatch(updateUser({
-            pokemonsSeen: [data.pokemonSeen].concat(response.data.pokemonsSeen)
-          }));
-        }).catch((e) => {
+      console.log(response);
+      axios
+        .put('/user/' + getState().userActions.user.localId, {
+          pokemonCaught: [data.pokemonCaught].concat(response.data.pokemonCaught)
+        })
+        .then(_ => {
+          dispatch(
+            updateUser({
+              pokemonsSeen: [data.pokemonCaught].concat(response.data.pokemonCaught)
+            })
+          );
+        })
+        .catch(e => {
           console.log(e);
         });
     })
@@ -73,45 +66,77 @@ export const addPokemonSeen = (data ) => (dispatch, getState ) => {
     });
 };
 
-export const fetchUserData = (localId, dispatch) => {
-  axios.get(firebaseConfig.databaseURL + '/users/' + localId + '.json')
+export const addPokemonSeen = data => (dispatch, getState) => {
+  axios
+    .get('/user/' + getState().userActions.user.localId)
     .then(response => {
-      dispatch(setUser({
-        username: response.data.username,
-        email: response.data.email,
-        localId : localId,
-        pokemonsCaught: response.data.pokemonsCaught,
-        pokemonsSeen: response.data.pokemonsSeen
-      }));
-      localStorage.setItem('id_token', jwt);
-      resolve();
+      axios
+        .put('/user/' + getState().userActions.user.localId, {
+          pokemonSeen: [data.pokemonSeen].concat(response.data.pokemonSeen)
+        })
+        .then(_ => {
+          dispatch(
+            updateUser({
+              pokemonsSeen: [data.pokemonSeen].concat(response.data.pokemonSeen)
+            })
+          );
+        })
+        .catch(e => {
+          console.log(e);
+        });
     })
     .catch(e => {
       console.log(e);
     });
 };
 
-export const registerFirebase = data => dispatch => {
-  return (axios
-      .post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + firebaseConfig.apiKey,{
-        email: data.email,
-        username: data.username,
-        password: data.password
-      }).then((res) => {
-        fetchUserData(res.data.localId, dispatch);
-      }).catch((e) => {
-        console.log(e);
-      }));
+export const fetchUserData = localId => dispatch => {
+  axios
+    .get('/user/' + localId)
+    .then(response => {
+      dispatch(
+        setUser({
+          username: response.data.username,
+          email: response.data.email,
+          localId: localId,
+          pokemonsCaught: response.data.pokemonCaught,
+          pokemonsSeen: response.data.pokemonSeen
+        })
+      );
+    })
+    .catch(e => {
+      console.log(e);
+    });
 };
 
-export const loginFirebase = data => dispatch => {
-  return (
-    axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + firebaseConfig.apiKey, {
+export const register = data => dispatch => {
+  return axios
+    .post('/signup', {
       email: data.email,
+      username: data.username,
       password: data.password
-    }).then(res => {
-      fetchUserData(res.data.localId, dispatch);
-    }).catch(e => {
+    })
+    .catch(e => {
       console.log(e);
-    }));
+    });
+};
+
+export const login = data => dispatch => {
+  return axios
+    .post('/login', {
+      login: data.email,
+      password: data.password
+    })
+    .then(res => {
+
+      localStorage.setItem('id_token', res.data.token);
+      dispatch(
+        setUser({
+          localId: res.data.id
+        })
+      );
+    })
+    .catch(e => {
+      console.log(e);
+    });
 };

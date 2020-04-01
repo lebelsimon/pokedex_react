@@ -9,6 +9,11 @@ import styled from 'styled-components'
 
 const ProfileScreen = props => {
   const history = useHistory();
+
+  console.log('props', props.userState.user)
+  useEffect(() => {
+    props.actions.userActions.fetchUserData(props.userState.user.localId)
+  }, [])
   return (
     <Container>
       <h1>ProfileScreen</h1>
@@ -22,11 +27,11 @@ const ProfileScreen = props => {
       </DivInfo>
       <DivInfo>
         <h4>Total Pokemon discovered : </h4>
-        <h4>0 / 251</h4>
+        <h4>{props.userState.user.pokemonsSeen.length} / 251</h4>
       </DivInfo>
       <DivInfo>
         <h4>Total Pokemon captured :</h4>
-        <h4> 0 / 251</h4>
+        <h4> {props.userState.user.pokemonsCaught.length} / 251</h4>
       </DivInfo>
     </Container>
   );
