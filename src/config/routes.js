@@ -7,8 +7,6 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import backgroundImage from '../pattern.jpg';
-import Pokemon from '../components/pokemon/Pokemon';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -17,7 +15,6 @@ import PokemonDetail from '../screens/PokemonDetailScreen';
 import Capture from '../screens/captureScreen';
 import ListPokemon from '../screens/PokemonListScreen';
 import Settings from '../screens/settings';
-import Loading from '../components/loading/loading';
 import NotFoundScreen from '../screens/NotFoundScreen';
 
 import PrivateRoute from './privateRoute';
@@ -31,7 +28,7 @@ const Routes = () => {
             <PrivateRoute path='/capture' component={Capture} />
             <PrivateRoute path='/listPokemon' component={ListPokemon} />
             <PrivateRoute path='/settings' component={Settings} />
-            <PrivateRoute exact path='/pokemon/:pokemonIndex' component={Pokemon} />
+            <PrivateRoute exact path='/pokemon/:pokemonIndex' component={PokemonDetail} />
             <PublicRoute path='/register' component={RegisterScreen} />
             <PublicRoute path='/login' component={LoginScreen} />
             <PrivateRoute path='/profile' component={ProfileScreen} />

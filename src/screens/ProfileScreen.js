@@ -2,15 +2,12 @@ import React, {useEffect} from 'react'
 import {bindActionCreators} from "redux";
 import alltheActions from "../actions";
 import {connect} from "react-redux";
-import {useHistory} from "react-router-dom";
 
 import styled from 'styled-components'
-// import ReactPaginate from 'react-paginate'
 
 const ProfileScreen = props => {
-  const history = useHistory();
 
-  console.log('props', props.userState.user)
+  console.log('props', props)
   useEffect(() => {
     props.actions.userActions.fetchUserData(props.userState.user.localId)
   }, [])
@@ -25,14 +22,23 @@ const ProfileScreen = props => {
       <h4>Username : </h4>
         <h4>{props.userState.user.username}</h4>
       </DivInfo>
-      <DivInfo>
+      {props.userState.user.pokemonsSeen ? 
+      (<DivInfo>
         <h4>Total Pokemon discovered : </h4>
         <h4>{props.userState.user.pokemonsSeen.length} / 251</h4>
-      </DivInfo>
-      <DivInfo>
+      </DivInfo>) : (
+      <></>)}
+      
+      {props.userState.user.pokemonsCaught ? (
+        <DivInfo>
         <h4>Total Pokemon captured :</h4>
         <h4> {props.userState.user.pokemonsCaught.length} / 251</h4>
       </DivInfo>
+      ) : (
+        <>
+        </>
+      )}
+      
     </Container>
   );
 };

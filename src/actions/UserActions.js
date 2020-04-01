@@ -103,6 +103,7 @@ export const fetchUserData = localId => dispatch => {
           pokemonsSeen: response.data.pokemonSeen
         })
       );
+      resolve();
     })
     .catch(e => {
       console.log(e);
