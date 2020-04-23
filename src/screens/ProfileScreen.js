@@ -1,17 +1,44 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react';
 import {bindActionCreators} from "redux";
 import alltheActions from "../actions";
 import {connect} from "react-redux";
 
 import styled from 'styled-components'
 
-const ProfileScreen = props => {
+import Loading from '../components/loading/loading';
 
-  console.log('props', props)
+const ProfileScreen = props => {
+  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    props.actions.userActions.fetchUserData(props.userState.user.localId)
-  }, [])
+    console.log('props', props)
+    
+
+    const handler = setTimeout(() => {
+      get();
+    }, 1000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, []);
+
+  const get = async () => {
+    try {
+      await props.actions.userActions.fetchUserData(props.userState.user.localId);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+    
   return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
     <Container>
       <h1>ProfileScreen</h1>
       <DivInfo>
@@ -40,6 +67,9 @@ const ProfileScreen = props => {
       )}
       
     </Container>
+    
+    )}
+    </>
   );
 };
 
