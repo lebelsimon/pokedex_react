@@ -40,9 +40,9 @@ const PokemonDetailScreen = props => {
       {loading ? (
         <Loading />
       ) : (
-        <DivDetail>
-          <PokemonDetail pokemon={props.pokemonState.onepokemon}/>
-        </DivDetail>
+          <DivDetail>
+            <PokemonDetail pokemon={props.pokemonState.onepokemon}/>
+          </DivDetail>
       )}
     </>
   );
